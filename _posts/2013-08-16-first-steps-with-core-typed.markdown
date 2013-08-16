@@ -1,0 +1,117 @@
+---
+layout: post
+title:  "Invariants via Immutability"
+date:   2013-08-16 16:22:50
+categories: Typed Clojure, core.typed, Clojure
+---
+
+Clojure's emphasis on immutable bindings and data structures lead
+us to write simpler, more obvious code. 
+We don't need to worry about immutable things changing over time,
+which reduces the cognitive load when reading.
+
+However, it is not uncommon to assume invariants for mutable structures.
+Sometimes refactoring such logic in terms of immutable things can be
+clearer for readers of such code, and help tools like Typed Clojure
+infer and check interesting invariants.
+
+# Local Bindings
+
+Local bindings in Clojure are immutable. More often than not, local bindings point to
+data structures which are themselves immutable.
+
+This combination enables Typed Clojure to infer invariants and are 
+both uncomplicated and inexpensive to compute.
+
+For example, if a collection implements `clojure.lang.IPersistentCollection`
+(ie. it is immutable), Typed Clojure can track its `count`.
+
+In this snippet, a local `a` of type `(Coll Number)` is in scope.
+`seq` returns a true value if its argument is non-empty. Typed Clojure
+remembers this down the "then" branch, because `a` is _immutable_.
+
+```clojure
+...
+(if (seq a)
+  ; `a` is (NonEmptyColl Number)
+  ; `a` is (Coll Number)
+  )
+...
+```
+
+This also works sequentially with assertions.
+
+```clojure
+...
+(do
+  (assert (seq a))
+  ; `a` is (NonEmptyColl Number)
+  )
+...
+```
+
+The program will fail at runtime if the expected invariant is violated. 
+Because of this, Typed Clojure is safe to assume the invariant on our immutable
+binding for the rest of its scope.
+
+# Dynamic vars
+
+Vars in Clojure are mutable. Typed Clojure does not attempt to track any interesting
+invariants about Vars as programs progress, but, as we will see, we can fall back on immutable local bindings.
+
+In this example, `*atom-or-nil*` has type `(U nil (Atom1 Number))`.
+
+This code results in a type error: Typed Clojure does not refine the type of mutable
+bindings, so it cannot rule out a null pointer exception. (Typed Clojure guarantees typed
+code cannot throw null pointer exceptions).
+
+```clojure
+(when *atom-or-nil*
+  (swap! *atom-or-nil* inc))
+```
+
+We can convince Typed Clojure that a null pointer exception is impossible by
+using an intermediate local variable. See the definition of `inc-dynamic` below.
+
+```clojure
+(ns blog.immutable.dynamic
+  (:require [clojure.core.typed 
+                          :refer [Atom1 Int check-ns]]))
+
+(def ^{:ann '(U nil (Atom1 Int))}
+  ^:dynamic *atom-or-nil* nil)
+
+(defn ^{:ann '[-> Int]}
+  inc-dynamic []
+  (if-let [a *atom-or-nil*]
+    (swap! a inc)
+    0))
+
+; (check-ns)
+; => :ok
+```
+
+`inc-dynamic` enjoys the strong invariants provided by immutable bindings, at the cost of
+a local binding. It is also obviously clear to the reader of such code that it is safe
+from null pointer exceptions. There is no question about mutating `a`.
+
+Note: For presentational purposes, we return `0` if `*atom-or-nil*` is `nil`.
+See `clojure.core.typed/when-let-fail`, which throws an exception if the binding is a false value.
+
+# Conclusion
+
+Immutability in Clojure reduces the cognitive load of programming. It also helps analysis tools
+verify invariants about your code without particularly sophisticated techniques.
+
+Interestingly, tailoring your code to convince Typed Clojure of invariants surrounding mutable code
+often results in clearer, more obviously correct code. 
+
+Your readers will thank you for it.
+
+# Read More
+
+[Occurrence Typing](http://www.ccs.neu.edu/racket/pubs/icfp10-thf.pdf) by [@samth](https://twitter.com/samth) and Mathias Felleisen.
+This inference technique helps Typed Clojure infer better types at branches and assertions.
+
+# Code
+
