@@ -7,18 +7,18 @@ categories: Typed Clojure, core.typed, Clojure
 
 Clojure's emphasis on immutable bindings and data structures lead
 us to write simpler, more obvious code. 
-We don't need to worry about immutable things changing over time,
-which reduces the cognitive load when reading.
+We don't need to worry about immutable things changing over time.
+This reduces the cognitive load of both writing and reading code.
 
-However, it is not uncommon to assume invariants for mutable structures.
-Sometimes refactoring such logic in terms of immutable things can be
-clearer for readers of such code, and help tools like Typed Clojure
-infer and check interesting invariants.
+It is common to assume invariants for mutable structures, however,
+even in Clojure.
+Sometimes refactoring such logic in terms of _immutable_ things can be
+clearer, and also help verification tools like Typed Clojure infer and check interesting invariants.
 
 # Local Bindings
 
-Local bindings in Clojure are immutable. More often than not, local bindings point to
-data structures which are themselves immutable.
+Local bindings in Clojure are immutable. Furthermore, local bindings often point to
+data structures which are _themselves_ immutable.
 
 This combination enables Typed Clojure to infer invariants and are 
 both uncomplicated and inexpensive to compute.
@@ -39,6 +39,8 @@ remembers this down the "then" branch, because `a` is _immutable_.
 ...
 ```
 
+Note: `Coll` and `NonEmptyColl` are type aliases defined in `clojure.core.typed`.
+
 This also works sequentially with assertions.
 
 ```clojure
@@ -57,7 +59,8 @@ binding for the rest of its scope.
 # Dynamic vars
 
 Vars in Clojure are mutable. Typed Clojure does not attempt to track any interesting
-invariants about Vars as programs progress, but, as we will see, we can fall back on immutable local bindings.
+invariants about Vars as programs progress, but, as we will see, we can fall back on 
+the obvious safety of _immutable_ local bindings.
 
 In this example, `*atom-or-nil*` has type `(U nil (Atom1 Number))`.
 
@@ -100,11 +103,11 @@ See `clojure.core.typed/when-let-fail`, which throws an exception if the binding
 
 # Conclusion
 
-Immutability in Clojure reduces the cognitive load of programming. It also helps analysis tools
+Immutability reduces the cognitive load of programming. It also helps analysis tools
 verify invariants about your code without particularly sophisticated techniques.
 
-Interestingly, tailoring your code to convince Typed Clojure of invariants surrounding mutable code
-often results in clearer, more obviously correct code. 
+Refactoring code to take advantage of immutability
+often results in clearer, more obviously correct code.
 
 Your readers will thank you for it.
 
@@ -115,8 +118,9 @@ This inference technique helps Typed Clojure infer better types at branches and 
 
 # Code
 
-See the [code](https://github.com/frenchy64/frenchy64.github.io/tree/master/code/blog) for this post.
+See the [code](https://github.com/frenchy64/frenchy64.github.io/tree/master/code/blog) for this blog.
 
-See also:
+Particularly:
+
 - [locals inference](https://github.com/frenchy64/frenchy64.github.io/blob/master/code/blog/src/blog/immutable/local.clj)
 - [dynamic vars](https://github.com/frenchy64/frenchy64.github.io/blob/master/code/blog/src/blog/immutable/dynamic.clj)
