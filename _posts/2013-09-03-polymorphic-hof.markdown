@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Using Polymorphic Higher-order Functions"
-date:   2013-08-16 16:22:50
+date:   2013-09-03 00:00:00
 categories: Typed Clojure, core.typed, Clojure
 ---
 
