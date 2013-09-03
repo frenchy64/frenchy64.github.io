@@ -112,8 +112,8 @@ types. [Hosoya and Pierce](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1
 describe exactly what "plain" local type inference is capable of.
 
 The developers of core.typed and Typed Racket are both keen to develop more powerful local inference,
-but it probably will require a non-trivial amount of effort. Scala's [Colored Local Type Inference
-](http://lampwww.epfl.ch/~odersky/papers/popl01.html) (Odersky, Zenger, Zenger and Lausanne) 
+but it probably will require a non-trivial amount of effort. 
+Scala's [Colored Local Type Inference](http://lampwww.epfl.ch/~odersky/papers/popl01.html) (Odersky, Zenger, Zenger and Lausanne) 
 is the kind of extension to local type inference type we're jealous of.
 
 Furthermore, Typed Clojure and Typed Racket already include extensions of its own to support [Practical Variable-arity
