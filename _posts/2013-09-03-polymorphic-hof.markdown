@@ -13,6 +13,8 @@ The two basic rules are:
 - polymorphic functions should be instantiated when used
   as a parameters to polymorphic higher-order functions.
 
+</hr>
+
 # Annotating function parameters
 
 There are several ways for function argument annotations to propagate
@@ -40,6 +42,8 @@ annotations.
 (cf (fn> [a :- Number] (inc a)))
 ;=> [Number -> Number]
 ```
+
+</hr>
 
 # Polymorphic higher-order functions
 
@@ -94,6 +98,8 @@ a plain keyword.
 ;=> (clojure.lang.LazySeq Number)
 ```
 
+</hr>
+
 # Why is this necessary?
 
 core.typed and [Typed Racket](http://docs.racket-lang.org/ts-guide/)
@@ -114,9 +120,11 @@ Furthermore, Typed Clojure and Typed Racket already include extensions of its ow
 Polymorphism (PDF)](http://www.ccs.neu.edu/racket/pubs/esop09-sthf.pdf) (Strickland, Tobin-Hochstadt and Felleisen),
 which helps us type check polymorphic functions with non-trivial variable-parameters like `map`.
 
+</hr>
+
 # See also
 
 - [Sam Tobin-Hochstadt's work](http://www.ccs.neu.edu/home/samth/)
 - [Steve Strickland's work](http://www.ccs.neu.edu/home/sstrickl/)
 - [Polymorphism in core.typed](https://github.com/clojure/core.typed/wiki/User-Guide#polymorphism)
-- My Honours dissertation [A Practical Type System for Clojure](https://github.com/downloads/frenchy64/papers/ambrose-honours.pdf)
+- My Honours dissertation [A Practical Optional Type System for Clojure](https://github.com/downloads/frenchy64/papers/ambrose-honours.pdf)
