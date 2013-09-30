@@ -2,7 +2,6 @@
 layout: post
 title:  "The Link between CinC and Typed Clojure"
 date:   2013-10-01 00:00:00
-categories: CinC, Typed Clojure, core.typed, Clojure
 ---
 
 The first stretch goal for the [Typed Clojure campaign](http://www.indiegogo.com/projects/typed-clojure/) 
