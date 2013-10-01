@@ -87,3 +87,7 @@ All funds raised between the $20,000-$25,500 interval will go to Nicola's work o
 CinC.
 
 [Pledge today](http://www.indiegogo.com/projects/typed-clojure/)!
+
+## Update
+
+So I tried out my ideas of type checking core.match and I was [very pleased](http://www.youtube.com/watch?v=g2zts1hW19k) with the results!
