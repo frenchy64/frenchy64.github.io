@@ -6,9 +6,10 @@ date:   2013-10-11 00:00:00
 
 An interesting aspect of type checking a Clojure dialect is dealing with host interop.
 
-In Typed _Clojure_, Java interop is handled by utilising Java type information. We then account
-for the stranger corners of Java types like covariant arrays and 
-[null](http://frenchy64.github.io/2013/10/04/null-pointer.html) to convert them to be Typed Clojure-friendly.
+In Typed _Clojure_, Java interop is handled by utilising Java type information. 
+For the collected Java types to be sound in Typed Clojure, we then transform them to
+deal with corner cases in Java type system like covariant arrays and 
+[null](http://frenchy64.github.io/2013/10/04/null-pointer.html).
 
 In checking Clojurescript, we need to type check interactions with Javascript. Clearly Javascript
 does not provide its own type annotations like Java.
