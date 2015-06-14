@@ -53,9 +53,37 @@ p {
   font-weight: 400;
 }
 
-a         { color: #00a; }
-a:hover   { color: #000; }
-a:visited { color: #a0a; }
+a {
+  -moz-transition-property: background;
+  -webkit-transition-property: background;
+  transition-property: background;
+  -moz-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  text-decoration: none;
+  color: inherit;
+
+  }
+
+a:hover {
+  background: #fbf3f3;
+  -moz-transition-property: background;
+  -webkit-transition-property: background;
+  transition-property: background;
+  -moz-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+
+  border-radius: 8px;
+}
+
+.post a:after {
+  content: "\FEFF ◊";
+  margin-left: 0.10em;
+  font-size: 90%;
+  top: -0.10em;
+  color: #933;
+}
 
 /*****************************************************************************/
 /*
