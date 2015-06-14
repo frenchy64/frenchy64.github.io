@@ -24,7 +24,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-left: 8rem; 
+  margin-left: 4rem; 
   text-align: center;
   font-size: 100%; 
   font-family: "chaparral-pro",sans-serif;
@@ -132,6 +132,7 @@ ul.posts span {
 .site .header h1.title {
   display: inline-block;
   margin-bottom: 1em;
+  margin-left: 17em;
 }
 
 .site .header h1.title a {
