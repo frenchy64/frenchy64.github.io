@@ -91,8 +91,6 @@ always exists), but we can easily convince core.typed we know what we are doing 
 post-condition.
 
 ```clojure
-(ann clojure.core/find-ns [clojure.lang.Symbol -> (U nil clojure.lang.Namespace)])
-
 (ann plus-var [-> (Var Any)])
 (defn plus-var []
   {:post [(var? %)]}

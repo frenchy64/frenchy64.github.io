@@ -14,16 +14,44 @@ html, body { height: 100%; }
 
 body {
   background-color: #FFF;
-  font: 13.34px Helvetica, Arial, sans-serif;
-  font-size: small;
-  text-align: center;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  font-family: "ff-tisa-web-pro",serif;
+  font-style: normal;
+  font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 100%; }
+  margin-left: 8rem; 
+  text-align: center;
+  font-size: 100%; 
+  font-family: "chaparral-pro",sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 1.14em;
+}
 
-h1 { margin-bottom: 1em; }
-p { margin: 1em 0; }
+h1 { 
+  margin-bottom: 1em; 
+}
+h2 { 
+  margin-bottom: 1.2em; 
+  font-size: 2.5rem;
+}
+p { 
+  margin-left: 8rem; 
+  font-size: 1.2rem;
+  text-align: left;
+  line-height: 1.5em;
+  margin-bottom: 0.8rem; 
+  width: 36.5rem; 
+  font-family: "ff-tisa-web-pro",serif;
+  font-style: normal;
+  font-weight: 400;
+}
 
 a         { color: #00a; }
 a:hover   { color: #000; }
@@ -40,14 +68,14 @@ ul.posts {
 }
 
 ul.posts li {
+  margin-left: 8rem; 
   line-height: 1.75em;
 }
 
 ul.posts span {
   color: #aaa;
-  font-family: Monaco, "Courier New", monospace;
-  font-size: 80%;
 }
+
 
 /*****************************************************************************/
 /*
@@ -57,10 +85,15 @@ ul.posts span {
 
 .site {
   font-size: 115%;
-  text-align: justify;
+  text-align: left;
   width: 42em;
   margin: 3em auto 2em;
   line-height: 1.5em;
+  margin-top: 4em;
+}
+
+.header {
+  text-align: center;
 }
 
 .site .header a {
@@ -70,7 +103,7 @@ ul.posts span {
 
 .site .header h1.title {
   display: inline-block;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 .site .header h1.title a {
@@ -129,32 +162,57 @@ ul.posts span {
 
 /* standard */
 .post pre {
+  /*
   border: 1px solid #ddd;
   background-color: #eef;
   padding: 0 .4em;
+  */
+  margin-top: 1.7em;
+  margin-bottom: 1.7em;
 }
 
 .post ul, .post ol {
-  margin-left: 1.35em;
+  margin-left: 11em;
+  margin-bottom: 0.8rem; 
+  width: 45rem; 
 }
 
+/* inline code blocks */
 .post code {
-  border: 1px solid #ddd;
+  /*border: 1px solid #ddd;
   background-color: #eef;
-  padding: 0 .2em;
+  padding: 0 .2em;*/
+  font-size: 1.26rem;
+  line-height: 1.5rem;
+  font-family: "anonymous-pro",sans-serif;
+  font-style: normal;
+  font-weight: 400;
 }
 
+/* code blocks */
 .post pre code {
   border: none;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 /* terminal */
 .post pre.terminal {
-  border: 1px solid #000;
+  /*border: 1px solid #000;
   background-color: #333;
-  color: #FFF;
+  color: #FFF;*/
 }
 
 .post pre.terminal code {
-  background-color: #333;
+  /*background-color: #333;*/
+}
+
+.post h2 {
+  margin-top: 0.8em; 
+  margin-bottom: 0.3em; 
+}
+
+.highlight {
+  margin-left: 8rem; 
+  margin-bottom: 0.8rem; 
 }

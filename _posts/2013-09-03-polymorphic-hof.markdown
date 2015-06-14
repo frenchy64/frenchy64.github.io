@@ -5,12 +5,12 @@ date:   2013-09-03 00:00:00
 categories: Typed Clojure, core.typed, Clojure
 ---
 
-[core.typed](https://github.com/clojure/core.typed) has some special rules for annotating functions.
+When it comes to annotating functions in [core.typed](https://github.com/clojure/core.typed), there are
+some special rules to keep in mind.
+Here are two.
 
-The two basic rules are:
-
-- all function parameters should be annotated
-- polymorphic functions should be instantiated when used
+1. all function parameters should be annotated
+2. polymorphic functions should be instantiated when used
   as a parameters to polymorphic higher-order functions.
 
 </hr>
@@ -35,11 +35,11 @@ into `ann-form`.
 ;=> [Number -> Number]
 ```
 
-[fn>](http://clojure.github.io/core.typed/#clojure.core.typed/fn>) supports partial and full
+[fn](http://clojure.github.io/core.typed/#clojure.core.typed/fn) supports partial and full
 annotations.
 
 ```clojure
-(cf (fn> [a :- Number] (inc a)))
+(cf (fn [a :- Number] (inc a)))
 ;=> [Number -> Number]
 ```
 
@@ -47,18 +47,16 @@ annotations.
 
 # Polymorphic higher-order functions
 
-A common pattern is to map a keyword over a list of maps.
-
-First, let's demonstrate how a keyword can be used as a function.
+A keyword can be used as a function.
 
 ```clojure
 (cf (:foo {:foo 1}))
 ;=> (Value 1)
 ```
 
-[map](https://github.com/clojure/core.typed/blob/57da1175037dfd61c96c711165ea318db65f46c0/src/main/clojure/clojure/core/typed/base_env.clj#L1002) is polymorphic and often is passed a polymorphic function as the first argument.
-
-We can use an unparameterised function without instantiation with `map`.
+The first argument to the polymorphic function [map](https://github.com/clojure/core.typed/blob/57da1175037dfd61c96c711165ea318db65f46c0/src/main/clojure/clojure/core/typed/base_env.clj#L1002) is often, itself, polymorphic.
+This thwarts the local type inference algorithm.
+Passing monomorphic arguments works fine.
 
 ```clojure
 (cf (map + [1 2 3]))
@@ -67,17 +65,18 @@ We can use an unparameterised function without instantiation with `map`.
 
 (See [AnyInteger](http://clojure.github.io/core.typed/#clojure.core.typed/AnyInteger)).
 
-A polymorphic higher order function passed to `map` should be manually instantiated,
-otherwise core.typed might lose accuracy or throw a type error.
+However if we map over a polymorphic function &mdash; say, a keyword &mdash; we must
+provide a more specific type via _instantiation_.
 
 ```clojure
 (cf (map (inst :foo Number) [{:foo 1} {:foo 2}]))
 ;=> (clojure.lang.LazySeq Number)
 ```
 
-[inst](http://clojure.github.io/core.typed/#clojure.core.typed/inst) takes a value of
-polymorphic type and a number of types, and returns the value instantiated with the 
-types. At runtime, a call to `inst` merely returns the first argument.
+[inst](http://clojure.github.io/core.typed/#clojure.core.typed/inst) takes a polymorphic
+expression and a number of types, and has a return type that replaces the bound type variables
+in the polymorphic type with the types provided.
+A call to `inst` returns the first argument at runtime.
 
 ```clojure
 (cf (inst :foo Number))
@@ -127,4 +126,4 @@ which helps us type check polymorphic functions with non-trivial variable-parame
 - [Sam Tobin-Hochstadt's work](http://www.ccs.neu.edu/home/samth/)
 - [Steve Strickland's work](http://www.ccs.neu.edu/home/sstrickl/)
 - [Polymorphism in core.typed](https://github.com/clojure/core.typed/wiki/User-Guide#polymorphism)
-- My Honours dissertation [A Practical Optional Type System for Clojure](https://github.com/downloads/frenchy64/papers/ambrose-honours.pdf)
+- My Honours dissertation [_A Practical Optional Type System for Clojure_](https://github.com/downloads/frenchy64/papers/ambrose-honours.pdf)

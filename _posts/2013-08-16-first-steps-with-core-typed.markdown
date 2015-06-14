@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Invariants via Immutability"
+title:  "Invariants via immutability"
 date:   2013-08-16 16:22:50
 categories: Typed Clojure, core.typed, Clojure
 ---
@@ -15,7 +15,7 @@ even in Clojure.
 Sometimes refactoring such logic in terms of _immutable_ things can be
 clearer, and also help verification tools like Typed Clojure infer and check interesting invariants.
 
-# Local Bindings
+# Local bindings
 
 Local bindings in Clojure are immutable. Furthermore, local bindings often point to
 data structures which are _themselves_ immutable.
@@ -28,7 +28,7 @@ For example, if a collection implements `clojure.lang.IPersistentCollection`
 
 In this snippet, a local `a` of type `(Coll Number)` is in scope.
 `seq` returns a true value if its argument is non-empty. Typed Clojure
-remembers this down the "then" branch, because `a` is _immutable_.
+remembers this down the &ldquo;then&rdquo; branch, because `a` is _immutable_.
 
 ```clojure
 ...
@@ -64,7 +64,7 @@ the obvious safety of _immutable_ local bindings.
 
 In this example, `*atom-or-nil*` has type `(U nil (Atom1 Number))`.
 
-This code results in a type error: Typed Clojure does not refine the type of mutable
+This code results in a type error &mdash; Typed Clojure does not refine the type of mutable
 bindings, so it cannot rule out a null pointer exception. (Typed Clojure guarantees typed
 code cannot throw null pointer exceptions).
 
@@ -79,13 +79,13 @@ using an intermediate local variable. See the definition of `inc-dynamic` below.
 ```clojure
 (ns blog.immutable.dynamic
   (:require [clojure.core.typed 
-                          :refer [Atom1 Int check-ns]]))
+             :refer [Atom1 Int check-ns ann]]))
 
-(def ^{:ann '(U nil (Atom1 Int))}
-  ^:dynamic *atom-or-nil* nil)
+(ann *atom-or-nil* (U nil (Atom1 Int)))
+(def ^:dynamic *atom-or-nil* nil)
 
-(defn ^{:ann '[-> Int]}
-  inc-dynamic []
+(ann inc-dynamic [-> Int])
+(defn inc-dynamic []
   (if-let [a *atom-or-nil*]
     (swap! a inc)
     0))
@@ -98,8 +98,8 @@ using an intermediate local variable. See the definition of `inc-dynamic` below.
 a local binding. It is also obviously clear to the reader of such code that it is safe
 from null pointer exceptions. There is no question about mutating `a`.
 
-Note: For presentational purposes, we return `0` if `*atom-or-nil*` is `nil`.
-See `clojure.core.typed/when-let-fail`, which throws an exception if the binding is a false value.
+_Note_: For presentational purposes, we return `0` if `*atom-or-nil*` is `nil`.
+See [`when-let-fail`](http://clojure.github.io/core.typed/#clojure.core.typed/when-let-fail), which throws an exception if the binding is a false value.
 
 # Conclusion
 
@@ -111,9 +111,9 @@ often results in clearer, more obviously correct code.
 
 Your readers will thank you for it.
 
-# Read More
+# Read more
 
-[Occurrence Typing](http://www.ccs.neu.edu/racket/pubs/icfp10-thf.pdf) by [@samth](https://twitter.com/samth) and Mathias Felleisen.
+[Occurrence Typing](http://www.ccs.neu.edu/racket/pubs/icfp10-thf.pdf) by [@samth](https://twitter.com/samth) and Matthias Felleisen.
 This inference technique helps Typed Clojure infer better types at branches and assertions.
 
 # Code

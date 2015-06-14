@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Typed Clojure Preview: Red/Black tree rebalancing invariants (with plain maps)"
+title:  "Red/Black tree rebalancing invariants (with plain maps)"
 date:   2013-10-03 00:00:00
 ---
 
@@ -47,16 +47,16 @@ In Typed Clojure, they are simply type aliases of heterogeneous maps, differenti
 by the `:tree` entry.
 
 ```clojure
-(def-alias EntryT 
+(defalias EntryT 
   "The payload"
   '{:key Number
     :datum Number})
 
-(def-alias Empty
+(defalias Empty
   "A terminating node."
   '{:tree ':Empty})
 
-(def-alias Red
+(defalias Red
   "A red node"
   (TFn [[l :variance :covariant]
         [r :variance :covariant]]
@@ -65,7 +65,7 @@ by the `:tree` entry.
       :left l
       :right r}))
 
-(def-alias Black
+(defalias Black
   "A black node"
   (TFn [[l :variance :covariant]
         [r :variance :covariant]]
@@ -90,24 +90,24 @@ We can emulate something similar in Typed Clojure with heterogeneous maps, by ta
 of subtyping between heterogeneous maps.
 
 ```clojure
-(def-alias rbt 
+(defalias rbt 
   "Trees with only black children for red nodes"
   (U 
     Empty
     (Black rbt rbt)
     (Red bt bt)))
 
-(def-alias bt 
+(defalias bt 
   "Like rbt but additionally the root node is black"
   (U 
     Empty
     (Black rbt rbt)))
 
-(def-alias red 
+(defalias red 
   "Trees with a red root"
   (Red bt bt))
 
-(def-alias badRoot 
+(defalias badRoot 
   "Invariant possibly violated at the root"
   (U 
     Empty
@@ -115,7 +115,7 @@ of subtyping between heterogeneous maps.
     (Red rbt bt)
     (Red bt rbt)))
 
-(def-alias badLeft 
+(defalias badLeft 
   "Invariant possibly violated at the left child"
   (U
    Empty
@@ -123,7 +123,7 @@ of subtyping between heterogeneous maps.
    (Red bt bt)
    (Black badRoot rbt)))
 
-(def-alias badRight 
+(defalias badRight 
   "Invariant possibly violated at the right child"
   (U
    Empty
