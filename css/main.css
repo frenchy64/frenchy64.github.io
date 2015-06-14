@@ -235,7 +235,7 @@ ul.posts span {
   /*background-color: #333;*/
 }
 
-.post h2 {
+.post h2, .post h1 {
   margin-top: 0.8em; 
   margin-bottom: 0.3em; 
 }
