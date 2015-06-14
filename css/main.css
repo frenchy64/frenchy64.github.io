@@ -78,7 +78,7 @@ a:hover {
 }
 
 .post a:after {
-  content: "\FEFF ◊";
+  content: "\FEFF »";
   margin-left: 0.10em;
   font-size: 90%;
   top: -0.10em;
