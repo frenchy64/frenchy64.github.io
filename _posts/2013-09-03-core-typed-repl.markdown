@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Using core.typed at the REPL"
+title:  "Using core.typed at&nbsp;the REPL"
 date:   2013-09-03 12:00:00
 categories: Typed Clojure, core.typed, Clojure
 ---

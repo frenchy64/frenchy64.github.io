@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The Link between CinC and Typed Clojure"
+title:  "The link between CinC and Typed&nbsp;Clojure"
 date:   2013-10-01 00:00:00
 ---
 
