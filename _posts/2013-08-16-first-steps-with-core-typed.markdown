@@ -5,9 +5,9 @@ date:   2013-08-16 16:22:50
 categories: Typed Clojure, core.typed, Clojure
 ---
 
-Clojure's emphasis on immutable bindings and data structures lead
+Clojure&rsquo;s emphasis on immutable bindings and data structures lead
 us to write simpler, more obvious code. 
-We don't need to worry about immutable things changing over time.
+We don&rsquo;t need to worry about immutable things changing over time.
 This reduces the cognitive load of both writing and reading code.
 
 It is common to assume invariants for mutable structures, however,
