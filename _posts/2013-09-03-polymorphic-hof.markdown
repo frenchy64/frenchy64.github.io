@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Using Polymorphic Higher-order Functions"
+title:  "Using polymorphic higher-order functions"
 date:   2013-09-03 00:00:00
 categories: Typed Clojure, core.typed, Clojure
 ---
@@ -20,14 +20,14 @@ Here are two.
 There are several ways for function argument annotations to propagate
 downwards.
 
-To annotate a full function type, use [ann-form](http://clojure.github.io/core.typed/#clojure.core.typed/ann-form).
+To annotate a full function type, use [`ann-form`](http://clojure.github.io/core.typed/#clojure.core.typed/ann-form).
 
 ```clojure
 (cf (ann-form (fn [a] (inc a)) [Number -> Number]))
 ;=> [Number -> Number]
 ```
 
-[cf](http://clojure.github.io/core.typed/#clojure.core.typed/cf) takes a second argument which expands
+[`cf`](http://clojure.github.io/core.typed/#clojure.core.typed/cf) takes a second argument which expands
 into `ann-form`.
 
 ```clojure
@@ -35,7 +35,7 @@ into `ann-form`.
 ;=> [Number -> Number]
 ```
 
-[fn](http://clojure.github.io/core.typed/#clojure.core.typed/fn) supports partial and full
+[`fn`](http://clojure.github.io/core.typed/#clojure.core.typed/fn) supports partial and full
 annotations.
 
 ```clojure
@@ -63,7 +63,7 @@ Passing monomorphic arguments works fine.
 ;=> (clojure.lang.LazySeq AnyInteger)
 ```
 
-(See [AnyInteger](http://clojure.github.io/core.typed/#clojure.core.typed/AnyInteger)).
+(See [`AnyInteger`](http://clojure.github.io/core.typed/#clojure.core.typed/AnyInteger)).
 
 However if we map over a polymorphic function &mdash; say, a keyword &mdash; we must
 provide a more specific type via _instantiation_.
@@ -73,7 +73,7 @@ provide a more specific type via _instantiation_.
 ;=> (clojure.lang.LazySeq Number)
 ```
 
-[inst](http://clojure.github.io/core.typed/#clojure.core.typed/inst) takes a polymorphic
+[`inst`](http://clojure.github.io/core.typed/#clojure.core.typed/inst) takes a polymorphic
 expression and a number of types, and has a return type that replaces the bound type variables
 in the polymorphic type with the types provided.
 A call to `inst` returns the first argument at runtime.
@@ -108,12 +108,12 @@ to infer applications of polymorphic arguments.
 It turns out we can infer direct applications of polymorphic types fairly easily, but
 higher-order polymorphic types are more difficult to infer when passed other polymorphic
 types. [Hosoya and Pierce](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7265)
-describe exactly what "plain" local type inference is capable of.
+describe exactly what &ldquo;plain&rdquo; local type inference is capable of.
 
 The developers of core.typed and Typed Racket are both keen to develop more powerful local inference,
 but it probably will require a non-trivial amount of effort. 
-Scala's [Colored Local Type Inference](http://lampwww.epfl.ch/~odersky/papers/popl01.html) (Odersky, Zenger, Zenger and Lausanne) 
-is the kind of extension to local type inference type we're jealous of.
+Scala&rsquo;s [Colored Local Type Inference](http://lampwww.epfl.ch/~odersky/papers/popl01.html) (Odersky, Zenger, Zenger and Lausanne) 
+is the kind of extension to local type inference type we&rsquo;re jealous of.
 
 Furthermore, Typed Clojure and Typed Racket already include extensions of its own to support [Practical Variable-arity
 Polymorphism (PDF)](http://www.ccs.neu.edu/racket/pubs/esop09-sthf.pdf) (Strickland, Tobin-Hochstadt and Felleisen),
@@ -123,7 +123,7 @@ which helps us type check polymorphic functions with non-trivial variable-parame
 
 # See also
 
-- [Sam Tobin-Hochstadt's work](http://www.ccs.neu.edu/home/samth/)
-- [Steve Strickland's work](http://www.ccs.neu.edu/home/sstrickl/)
+- [Sam Tobin-Hochstadt&rsquo;s work](http://www.ccs.neu.edu/home/samth/)
+- [Steve Strickland&rsquo;s work](http://www.ccs.neu.edu/home/sstrickl/)
 - [Polymorphism in core.typed](https://github.com/clojure/core.typed/wiki/User-Guide#polymorphism)
 - My Honours dissertation [_A Practical Optional Type System for Clojure_](https://github.com/downloads/frenchy64/papers/ambrose-honours.pdf)

@@ -4,53 +4,56 @@
 /*
 /*****************************************************************************/
 
+@media all {html {font-size: 17px;}}
+@media all and (max-width:1000px){html {font-size: 17px;}}
+@media all and (max-width:960px){html {font-size: 17px;}}
+@media all and (max-width:920px){html {font-size: 16px;}}
+@media all and (max-width:880px){html {font-size: 15px;}}
+@media all and (max-width:840px){html {font-size: 14px;}}
+@media all and (max-width:800px){html {font-size: 13px;}}
+@media all and (max-width:760px){html {font-size: 12px;}}
+@media all and (max-width:720px){html {font-size: 11px;}}
+@media all and (max-width:680px){html {font-size: 10px;}}
+@media all and (max-width:640px){html {font-size: 9px;}}
+@media all and (max-width:600px){html {font-size: 8px;}}
+@media all and (max-width:560px){html {font-size: 7px;}}
+@media all and (max-width:520px){html {font-size: 6px;}}
+
 /* Global Reset */
 * {
   margin: 0;
   padding: 0;
 }
 
-html, body { height: 100%; }
+html { height: 100%; }
 
 body {
+  min-height: 100%;
   background-color: #FFF;
   text-align: left;
   margin-left: auto;
   margin-right: auto;
   max-width: 1000px;
+  min-width: 500px;
   font-family: "ff-tisa-web-pro",serif;
   font-style: normal;
   font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-left: 4rem; 
-  text-align: center;
-  font-size: 100%; 
-  font-family: "chaparral-pro",sans-serif;
+  text-align: left;
+  font-family: inherit;
   font-style: normal;
   font-weight: 300;
-  font-size: 2rem;
+  font-size: 153%;
   line-height: 1.14em;
 }
 
 h1 { 
-  margin-bottom: 1em; 
+  margin-bottom: 1.2em; 
 }
 h2 { 
   margin-bottom: 1.2em; 
-  font-size: 2.5rem;
-}
-p { 
-  margin-left: 8rem; 
-  font-size: 1.2rem;
-  text-align: left;
-  line-height: 1.5em;
-  margin-bottom: 0.8rem; 
-  width: 36.5rem; 
-  font-family: "ff-tisa-web-pro",serif;
-  font-style: normal;
-  font-weight: 400;
 }
 
 a {
@@ -92,11 +95,10 @@ a:hover {
 /*****************************************************************************/
 ul.posts {
   list-style-type: none;
-  margin-bottom: 2em;
+  margin-bottom: 1.9rem;
 }
 
 ul.posts li {
-  margin-left: 8rem; 
   line-height: 1.75em;
 }
 
@@ -111,17 +113,27 @@ ul.posts span {
 /*
 /*****************************************************************************/
 
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 4em;
+  width: 31.4em;
+}
+
 .site {
-  font-size: 115%;
+  font-size: 100%;
   text-align: left;
-  width: 42em;
-  margin: 3em auto 2em;
+  width: inherit;
   line-height: 1.5em;
-  margin-top: 4em;
+  position: relative;
+  margin-left: 4em;
 }
 
 .header {
-  text-align: center;
+  text-align: left;
+  position: absolute;
+  left: -6.1em;
+  display: block;
 }
 
 .site .header a {
@@ -131,8 +143,6 @@ ul.posts span {
 
 .site .header h1.title {
   display: inline-block;
-  margin-bottom: 1em;
-  margin-left: 17em;
 }
 
 .site .header h1.title a {
@@ -189,6 +199,20 @@ ul.posts span {
 /*
 /*****************************************************************************/
 
+/* default font */
+.post {
+  font-size: 100%
+  text-align: left;
+  line-height: 1.27em;
+  font-family: "ff-tisa-web-pro",serif;
+  font-style: normal;
+  font-weight: 400;
+}
+.post p { 
+  margin-bottom: 1.2em; 
+  width: inherit; 
+}
+
 /* standard */
 .post pre {
   /*
@@ -197,13 +221,13 @@ ul.posts span {
   padding: 0 .4em;
   */
   margin-top: 1.7em;
-  margin-bottom: 1.7em;
+  margin-bottom: 1.9rem;
 }
 
 .post ul, .post ol {
-  margin-left: 11em;
-  margin-bottom: 0.8rem; 
-  width: 45rem; 
+  margin-left: 2rem; 
+  margin-bottom: 1.9rem; 
+  width: inherit;
 }
 
 /* inline code blocks */
@@ -211,7 +235,7 @@ ul.posts span {
   /*border: 1px solid #ddd;
   background-color: #eef;
   padding: 0 .2em;*/
-  font-size: 1.26rem;
+  font-size: 80%
   line-height: 1.5rem;
   font-family: "anonymous-pro",sans-serif;
   font-style: normal;
@@ -221,7 +245,8 @@ ul.posts span {
 /* code blocks */
 .post pre code {
   border: none;
-  font-size: 1rem;
+  font-size: 80%
+  font-family: "anonymous-pro",sans-serif;
   line-height: 1.5rem;
 }
 
@@ -237,11 +262,14 @@ ul.posts span {
 }
 
 .post h2, .post h1 {
-  margin-top: 0.8em; 
-  margin-bottom: 0.3em; 
+  margin-top: 0.2em; 
+  margin-bottom: 1.2em; 
 }
 
-.highlight {
-  margin-left: 8rem; 
-  margin-bottom: 0.8rem; 
+.post .highlight {
+  margin-bottom: 1.9rem; 
+}
+
+.post .aside {
+  position: absolute;
 }
