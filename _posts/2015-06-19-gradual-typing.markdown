@@ -81,7 +81,7 @@ We concentrate on the latter, as featured in Typed&nbsp;Racket.
 </div>
 
 Whenever a value &mdash; typed or untyped &mdash; crosses the language boundary, it is the mediator&rsquo;s job to
-apply an appriopriate contract.
+apply an appropriate contract.
 
 We represent an untyped value with the
 Clojure logo. When the mediator wraps some untyped value in contracts, we 
