@@ -287,11 +287,13 @@ ul.posts span {
 .post .aside {
   text-align: right;
   position: absolute;
-  left: -6.1em;
+  left: -12.2em;
   display: block;
-  width: 5em;
+  width: 10em;
+  font-size: 70%;
+  line-height: 1.4em;
 }
 
 img {
-  width: 100%;
+  width: 95%; /* useful for links */
 }
