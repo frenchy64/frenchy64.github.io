@@ -228,7 +228,7 @@ the invocation is statically typed.
 
 The final two cases are similar.
 
-Firstly, exporting a typed value can be used by a typed function.
+Firstly, exporting a typed value can be used by an untyped function.
 
 <img src="{{ site.url }}/images/untyped-invoke-gtyped.png"/>
 
