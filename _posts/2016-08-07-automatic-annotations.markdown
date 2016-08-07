@@ -6,10 +6,6 @@ date:   2016-08-07 08:00:00
 
 <img src="{{ site.url }}/images/automatic-annotations.png"/>
 
-<div class="aside funding-aside">
-<iframe src="https://www.indiegogo.com/project/typed-clojure-automatic-annotations--2/embedded/4545030" width="222px" height="445px" frameborder="0" scrolling="no"></iframe>
-</div>
-
 Annotations in Typed Clojure are essential, but tedious
 to write.
 We need a tool to generate type annotations automatically,
@@ -23,7 +19,10 @@ We discuss how it
 - helps static type checking by reducing the annotation effort.
 
 This work is part of a crowdfunding effort, please
-support the campaign by clicking the banner on the left!
+support the campaign by clicking the banner the below
+(or <a href="https://igg.me/at/typed-clojure-annotations/x/4545030">here</a>)!
+
+<iframe src="https://www.indiegogo.com/project/typed-clojure-automatic-annotations--2/embedded/4545030" width="222px" height="445px" frameborder="0" scrolling="no"></iframe>
 
 <!--
 <img src="{{ site.url }}/images/clojure-intro.png"/>
@@ -134,10 +133,6 @@ are useful to document and verify
 code, using either runtime or compile-time 
 techniques.
 
-<div class="aside funding-aside">
-<iframe src="https://www.indiegogo.com/project/typed-clojure-automatic-annotations--2/embedded/4545030" width="222px" height="445px" frameborder="0" scrolling="no"></iframe>
-</div>
-
 # Next posts
 
 That wraps up my introduction to automatic annotations
@@ -148,4 +143,6 @@ and unique annotation problems related to how Clojure programmers
 use data.
 
 If you enjoyed this post, please consider donating
-to the campaign (on the left)!
+to the campaign!
+
+<iframe src="https://www.indiegogo.com/project/typed-clojure-automatic-annotations--2/embedded/4545030" width="222px" height="445px" frameborder="0" scrolling="no"></iframe>
