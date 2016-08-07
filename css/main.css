@@ -294,6 +294,10 @@ ul.posts span {
   line-height: 1.4em;
 }
 
+.post .funding-aside {
+  left: -16.2em;
+}
+
 img {
   width: 95%; /* useful for links */
 }
