@@ -11,7 +11,7 @@ Previously, we covered
 and some 
 <a href="{{ site.url }}/2016/08/15/runtime-infer-basics.html">basics underlying the infrastructure to perform automatic annotations</a>.
 
-In this point, we'll see how function types are inferred,
+In this post we'll see how function types are inferred,
 as well as simple map types.
 
 <hr />
