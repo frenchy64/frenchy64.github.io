@@ -1,28 +1,36 @@
 ---
 layout: post
 title:  "Macros across boundaries"
-date:   2016-05-01 08:00:00
+date:   2018-04-07 01:30:00
 ---
 
+<i>
+As part of my work on gradual typing
+for Typed Clojure, I used a different approach than Typed
+Racket in importing and exporting top-level defines.
+It was initially by necessity, as Clojure namespaces are
+much simpler than Racket modules, but we discovered it
+was now possible to export macros defined in typed modules
+(unlike Typed Racket).
+</i>
+
+<i>
+This work (and the ambition to add gradual typing to
+Typed Clojure) was eventually abandoned and was never
+merged into core.typed--perhaps a subject of a different blog post.
+</i>
+
+<hr/>
+
 Typed Racket cannot export macros.
-In typed modules, definitions introduce
-statically
-verified ("unsafe") variables,
-and usages are statically verified.
-and export dynamically verified
-("safe") variables in untyped namespaces.
-Unfortunately,
-unsafe variables can ``escape'' via
-the macroexpansion of typed macros, thus
-macro exports are disallowed.
+This is because unsafe variables can escape via
+the macroexpansion of typed macros into untyped land
+and wreak havoc.
+Typed Racket always emits unsafe variables and adds contracts
+as needed--Typed Clojure does the opposite,
+and can export macros safely.
 
-In contrast, Typed Clojure can export macros.
-Safe variables are in scope by default.
-Exported macros 
-The static type system then rewrites safe occurrences
-when their types are verified to avoid runtime overhead.
 The drawback: all bindings must be able to generate contracts.
-
 
 # The Problem
 
@@ -57,7 +65,7 @@ macros.
     ;  given: 'a
 ```
 
-Exporting such macros are disallowed in Typed Racket.
+Exporting such macros is disallowed in Typed Racket.
 Since the macroexpansion of `m` contains
 an unsafe reference to `f`, using this macro
 in untyped contexts can freely violate any
@@ -138,7 +146,6 @@ values in safe definitions.
 Yes, but with the same drawbacks here: all typed
 bindings must be capable of generating contracts 
 based on their types.
-We plan to experiment converting Typed Racket
-to use this approach and evaluating whether
-programs still type check.
-
+It would be interesting to try this approach in Typed Racket
+and see how programs still type check--or even how many _new_
+programs can be written using macro exports.
