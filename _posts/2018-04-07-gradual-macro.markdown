@@ -52,7 +52,7 @@ when they occur in typed contexts.
        ;  given: 'a
 ```
 
-We can write macros that expand to usages of $f$.
+We can write macros that expand to usages of `f`.
 Typed Racket only checks the full expansion of
 macros.
 
@@ -74,7 +74,7 @@ invariants assumed by typed code.
 # A Solution: Typed Clojure
 
 Typed Clojure takes a different approach.
-Let's try the previous exercise in Typed Clojure.
+Let’s try the previous exercise in Typed Clojure.
 We define a function `f` that increments its argument.
 
 ```clojure
@@ -105,7 +105,7 @@ version.
 ;  Type error, Expected Number found Symbol: 'a
 ```
 
-Here's the key idea: referring to `f` in a macro defaults 
+Here’s the key idea: referring to `f` in a macro defaults 
 to the _safe_ binding `f`. 
 Expansions in untyped contexts refer to `f`;
 expansion typed contexts are _rewritten_, and refer to
@@ -137,7 +137,7 @@ Several solutions are possible. We might selectively disable contract generation
 on variables, but this exposes unsafe bindings in the same
 way Typed Racket avoids by disabling macro exports.
 We could provide users with the ability to assign their own
-contracts or types that are "good enough" for their purposes.
+contracts or types that are “good enough” for their purposes.
 We could also use a less strict contract system when we _cast_
 values in safe definitions.
 
