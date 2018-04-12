@@ -40,7 +40,7 @@ They identified another option, which was to stop the world, stop everyone from 
 
 <img src="{{ site.url }}/images/quals/quals.png.005.png"/>
 
-What’s so interesting about this particular story is that they chose option 2—they found a window, in fact it was their 48 hour hackathon, where no devs were working on the app for 48 hours.
+What’s so interesting about this particular story is that they chose option 2 &mdash; they found a window, in fact it was their 48 hour hackathon, where no devs were working on the app for 48 hours.
 
 So, six of the developers formed a team to perform this particular migration during the hackathon.
 

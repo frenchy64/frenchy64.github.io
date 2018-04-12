@@ -27,7 +27,7 @@ This is because unsafe variables can escape via
 the macroexpansion of typed macros into untyped land
 and wreak havoc.
 Typed Racket always emits unsafe variables and adds contracts
-as needed--Typed Clojure does the opposite,
+as needed &mdash; Typed Clojure does the opposite,
 and can export macros safely.
 
 The drawback: all bindings must be able to generate contracts.
@@ -147,5 +147,5 @@ Yes, but with the same drawbacks here: all typed
 bindings must be capable of generating contracts 
 based on their types.
 It would be interesting to try this approach in Typed Racket
-and see how programs still type check--or even how many _new_
+and see how programs still type check &mdash; or even how many _new_
 programs can be written using macro exports.
