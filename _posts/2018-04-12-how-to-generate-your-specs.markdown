@@ -45,11 +45,6 @@ Next, make `clj-time` depend on [`core.typed`](https://github.com/clojure/core.t
 <i>
 clj-time/project.clj
 </i>
-
-<div>
-(Having issues?
-See <a href="https://github.com/clojure/core.typed#releases-and-dependency-information">this section</a> about recent releases.)
-</div>
 </div>
 ```clojure
 :dependencies [...
