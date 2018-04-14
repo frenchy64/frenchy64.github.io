@@ -111,7 +111,7 @@ Returning to our original example, we can clean it up by utilising the succinct 
 ;=> [Any -> Number]
 ```
 
-</hr>
+<hr />
 
 ## Read more
 
