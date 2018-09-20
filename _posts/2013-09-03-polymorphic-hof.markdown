@@ -13,7 +13,7 @@ Here are two.
 2. polymorphic functions should be instantiated when used
   as a parameters to polymorphic higher-order functions.
 
-</hr>
+<hr/>
 
 # Annotating function parameters
 
