@@ -37,7 +37,7 @@ body {
   min-width: 500px;
   font-family: "ff-tisa-web-pro",serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -220,7 +220,7 @@ ul.posts span {
   line-height: 1.4em;
   font-family: "ff-tisa-web-pro",serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
 }
 .post p { 
   margin-bottom: 1.2em; 
