@@ -26,7 +26,7 @@ claims of their code, we should explore the nature of `nil` in Clojure.
 At its most basic level, `nil` is exactly Java's _null_ value.
 
 `nil` has a special property in Clojure: it is a false value. This is particularly
-convenient for branching in the presence of `nil`, as tests like `(nil? e)` to test
+convenient for branching in the presence of `nil`, as tests like `(nil? e)`{:.language-clojure .highlight} to test
 for `nil` can simply be replaced by `e`.
 
 The places where `nil` is used are very similar to their intended use
@@ -50,17 +50,17 @@ Now that `nil` is just another value type, we must be explicit about its usage.
 Clojure programmers think in terms of data flow. To capture this insight, types must be rich enough to
 describe arbitrary combinations of data. Typed Clojure provides _unions_ for exactly this:
 if a function returns a `java.lang.Integer` or `nil`
-the type is simply `(U java.lang.Integer nil)`.
+the type is simply `(U java.lang.Integer nil)`{:.language-clojure .highlight}.
 
 Introducing `nil` with unions is all well and good, but we need a mechanism to _eliminate_ `nil`
 if a potential misuse of `nil` is to result in a type error.
 
 Typed Clojure already supports a powerful and easy-to-understand way of refining a union:
 [occurrence typing](http://frenchy64.github.io/2013/09/08/simple-reasoning-assertions-core-typed.html).
-Typed Clojure knows that the local binding `x` in `(when x e)` will never be `nil` in expression `e`,
+Typed Clojure knows that the local binding `x` in `(when x e)`{:.language-clojure .highlight} will never be `nil` in expression `e`,
 and actually updates the type of `x` without `nil`.
 This also extends to nested structures like heterogeneous maps: the `:foo` key of `x`
-in `(when (:foo x) e)` is known to never be `nil` in `e`.
+in `(when (:foo x) e)`{:.language-clojure .highlight} is known to never be `nil` in `e`.
 
 Type checking interactions with Java code is an interesting problem with an explicit `nil` type,
 but the solution is [intuitive](http://vimeo.com/55280915), essentially relying on the programmer
