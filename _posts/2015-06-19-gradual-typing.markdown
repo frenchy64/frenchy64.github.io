@@ -195,7 +195,7 @@ The following can happen if the function is left bare in untyped land.
 ;=> 2.2
 ```
 
-Clearly this is bad. `1.2` is not an `Int`. Neither is `2.2`. Adding contracts preserves the static invariants.
+Clearly this is bad. `1.2`{:.language-clojure .highlight} is not an `Int`. Neither is `2.2`{:.language-clojure .highlight}. Adding contracts preserves the static invariants.
 
 ```clojure
 ((fn [n :- Int] :- Int
@@ -208,7 +208,7 @@ Clearly this is bad. `1.2` is not an `Int`. Neither is `2.2`. Adding contracts p
 It turns out we can elide the contract on the return value of typed functions
 if they are _flat_ values, that is a value that can be checked immediately 
 &mdash; like integers, strings, or immutable data structures.
-If the return type is a function like `[Int -> Int]` or anything that _might_ require a higher-order
+If the return type is a function like `[Int -> Int]`{:.language-clojure .highlight} or anything that _might_ require a higher-order
 contract like `Any`, we must be proactive and add a contract.
 
 The second case where a typed function can be applied to an untyped value is in typed land
