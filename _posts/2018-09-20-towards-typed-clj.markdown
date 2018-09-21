@@ -47,7 +47,7 @@ the following expression
 
 can be described in two steps.
 
-1. Call `(fn [x] x)` on elements of `[1 2 3]`,
+1. Call `(fn [x] x)`{:.language-clojure .highlight} on elements of `[1 2 3]`{:.language-clojure .highlight},
 2. return a sequence of those results.
 
 In a picture:
@@ -67,9 +67,9 @@ If we look at the type of `map`, could we recover the same information?
            [[a -> b] (Seqable a) -> (Seqable b)]))
 ```
 
-Yes. We notice the first argument has type `[a -> b]`, and so
+Yes. We notice the first argument has type `[a -> b]`{:.language-clojure .highlight}, and so
 _requires_ a value of type `a` before it produces a value of type `b`.
-The second argument is of type `(Seqable a)`, and is thus our only
+The second argument is of type `(Seqable a)`{:.language-clojure .highlight}, and is thus our only
 source of `a`'s. Let's draw this first step.
 
 ```clojure
