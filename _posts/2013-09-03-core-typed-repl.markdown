@@ -21,12 +21,15 @@ nil
 clojure.core.typed=> (defn my-inc [a] (inc a))
 #'clojure.core.typed/my-inc
 clojure.core.typed=> (cf (my-inc 1))
-Type Error (clojure.core.typed:1:34) Unannotated var clojure.core.typed/my-inc
-Hint: Add the annotation for clojure.core.typed/my-inc via check-ns or cf
+Type Error (clojure.core.typed:1:34)
+Unannotated var clojure.core.typed/my-inc
+Hint: Add the annotation for clojure.core.typed/my-inc
+via check-ns or cf
 in: clojure.core.typed/my-inc
 
 
-ExceptionInfo Type Checker: Found 1 error  clojure.core/ex-info (core.clj:4327)
+ExceptionInfo Type Checker: Found 1 error 
+clojure.core/ex-info (core.clj:4327)
 ```
 
 To correctly feed forms to be checked, wrap each form in `cf`.
