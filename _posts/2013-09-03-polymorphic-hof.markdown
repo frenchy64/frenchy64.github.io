@@ -43,7 +43,7 @@ annotations.
 ;=> [Number -> Number]
 ```
 
-</hr>
+<hr/>
 
 # Polymorphic higher-order functions
 
@@ -97,7 +97,7 @@ a plain keyword.
 ;=> (clojure.lang.LazySeq Number)
 ```
 
-</hr>
+<hr/>
 
 # Why is this necessary?
 
@@ -119,7 +119,7 @@ Furthermore, Typed Clojure and Typed Racket already include extensions of its ow
 Polymorphism (PDF)](http://www.ccs.neu.edu/racket/pubs/esop09-sthf.pdf) (Strickland, Tobin-Hochstadt and Felleisen),
 which helps us type check polymorphic functions with non-trivial variable-parameters like `map`.
 
-</hr>
+<hr/>
 
 # See also
 

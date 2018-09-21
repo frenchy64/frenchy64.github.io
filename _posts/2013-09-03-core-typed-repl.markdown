@@ -40,7 +40,7 @@ clojure.core.typed=> (cf (my-inc 1))
 Number
 ```
 
-</hr>
+<hr/>
 
 # Experimenting at the REPL
 
@@ -67,7 +67,7 @@ Checked 0 namespaces (approx. 0 lines) in 686.818295 msecs
 :ok
 ```
 
-</hr>
+<hr/>
 
 # More resources
 

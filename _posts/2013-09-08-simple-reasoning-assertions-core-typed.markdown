@@ -66,7 +66,7 @@ core.typed's local annotation macro, to confirm this intuition
 ;=> [Any -> Number]
 ```
 
-</hr>
+<hr/>
 
 ## Real world assertions
 
