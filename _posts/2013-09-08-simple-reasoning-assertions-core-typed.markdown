@@ -4,9 +4,13 @@ title:  "Simple local reasoning with assertions"
 date:   2013-09-08 23:00:00
 ---
 
+<i>
 Assertions are a popular technique for runtime verification of Clojure code.
 These assertions are often a rich source of type information that core.typed
 takes advantage of.
+</i>
+
+<hr/>
 
 ## Simple flow reasoning
 
@@ -25,8 +29,8 @@ Consider the following common macroexpansion for an assertion:
 ```
 
 After we understand branching and sequencing of code in Clojure, it's easy to see that 
-`(inc a)` will never throw a type error. 
-If we get to `(inc a)`, `a` must be a `Number`, because otherwise an assertion error 
+`(inc a)`{:.language-clojure .highlight} will never throw a type error. 
+If we get to `(inc a)`{:.language-clojure .highlight}, `a`{:.language-clojure .highlight} must be a `Number`, because otherwise an assertion error 
 will be thrown.
 
 core.typed follows a similar logic.
@@ -35,7 +39,7 @@ First, type information is gathered from the conditional.
 
 By type checking each branch, core.typed deduces:
 
-- the *then* branch returns normally (it returns `nil`).
+- the *then* branch returns normally (it returns `nil`{:.language-clojure .highlight}).
 - the *else* branch never returns (it always throws an exception), 
 
 The *then* branch is the _only_ branch visited, if execution proceeds normally (ie. without an exception).
@@ -84,7 +88,7 @@ For example, my favourite inline assertion is a sanity check for `nil`.
 ```
 
 This models how robust, defensive Clojure code should be written. core.typed updates `ns`
-from `(U nil Namespace)` to `Namespace`, precisely what the programmer intended.
+from `(U nil Namespace)`{:.language-clojure .highlight} to `Namespace`, precisely what the programmer intended.
 
 Pre/post conditions work similarly. The above code always returns a Var (because `clojure.core/+`
 always exists), but we can easily convince core.typed we know what we are doing by using a 
@@ -99,7 +103,7 @@ post-condition.
     (ns-resolve ns '+)))
 ```
 
-The post-condition updates the return value from `(U nil Class (Var Any))` to `(Var Any)`.
+The post-condition updates the return value from `(U nil Class (Var Any))`{:.language-clojure .highlight} to `(Var Any)`{:.language-clojure .highlight}.
 
 Returning to our original example, we can clean it up by utilising the succinct pre-condition syntax.
 
