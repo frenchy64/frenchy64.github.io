@@ -4,12 +4,17 @@ title:  "The Road to Typed Clojure 1.0: Part 1"
 date:   2018-09-20 02:00:00
 ---
 
-What set of features would deserve a `1.0` release for Typed Clojure?
+<i>
+What set of features would deserve a 1.0 release for Typed Clojure?
+</i>
+
+<i>
 We've learnt valuable lessons from real-world developers about the pain
 points of using Typed Clojure, and after several years of mulling it over,
 we have a much better idea of how we might improve it.
-This series of posts will outline our proposed solutions, and give an idea of what I'm hoping
-Typed Clojure `1.0` might look like.
+This series of posts will outline our proposed solutions, and give an impression of what we hope
+for Typed Clojure 1.0.
+</i>
 
 <hr />
 
@@ -98,17 +103,20 @@ Here are some ideas.
 
 ## Avoid annotating anonymous fn's
 
-```clojure
-;   Take the following code, where `f` and `g` are
-;   unannotated anonymous functions like `(fn [x] ...)`.
+Take the following code, where `f` and `g` are
+unannotated anonymous functions like `(fn [x] ...)`{:.language-clojure .highlight}.
 
+```clojure
 (let [h (comp f g)]
   (map h c))
 ;=> r
+```
 
-;   We can delay checking `f` and `g` until
-;   `h` is called, and wait for more type information
-;   from the `map` expression.
+We can delay checking `f` and `g` until
+`h` is called, and wait for more type information
+from the `map` expression.
+
+```clojure
 
               v-\ 3.
 (let [h (comp f g)]
@@ -117,43 +125,48 @@ Here are some ideas.
        |    4.\--v
   (map h c)) ;=> r
        ^-/ 1.
+```
 
-;   There are 4 control flow edges above.
-;     1. Arguments flow from `c` to `h`.
-;     2. The same argument is forwarded to `g`.
-;     3. `g`'s result is passed to `f`.
-;     4. A sequence of `f`'s results returned as `r`.
+There are 4 control flow edges above.
 
-;   All this can be justified just from the types of `map`
-;   and `comp`. Here's how to derive the information from `comp`.
-;   The control flow of an expression `((comp f g) v)` looks like:
+1. Arguments flow from `c` to `h`.
+2. The same argument is forwarded to `g`.
+3. `g`'s result is passed to `f`.
+4. A sequence of `f`'s results returned as `r`.
 
+All this can be justified just from the types of `map`
+and `comp`. Here's how to derive the information from `comp`.
+The control flow of an expression `((comp f g) v)`{:.language-clojure .highlight} looks like:
+
+```clojure
        v----\ 2.
 ((comp f    g)    v) ;=> v'
        |    ^-----/ 1.   ^
      3.\-----------------/          
+```
 
-;   Notice that without `v`, there is nothing to call `g` with,
-;   so it's safe to assume `(comp f g)` by itself can never 
-;   call `g`, and, by transitivity, `f`.
+Notice that without `v`, there is nothing to call `g` with,
+so it's safe to assume `(comp f g)`{:.language-clojure .highlight} by itself can never 
+call `g`, and, by transitivity, `f`.
 
-;   The type of `comp` has this exact information: the output of
-;   `comp` must be called before either `comp` argument is called.
+The type of `comp` has this exact information: the output of
+`comp` must be called before either `comp` argument is called.
 
+```clojure
 (ann comp (All [a b c]
               v-------------\ 2.
             [[b -> c] [a -> b] -> [a -> c]]))
               |        ^-----------/ 1. ^
             3.\-------------------------/
-
-;   In words, once `a` is provided:
-;     1. `a` flows to the second argument.
-;     2. `b` flows to the first argument.
-;     3. `c` flows to the return.
-
-;   We can justify a delayed check of `comp`'s arguments
-;   because providing `a` "kicks it all off".
 ```
+
+In words, once `a` is provided:
+1. `a` flows to the second argument.
+2. `b` flows to the first argument.
+3. `c` flows to the return.
+
+ We can justify a delayed check of `comp`'s arguments
+ because providing `a` "kicks it all off".
 
 ## Error messages detailing inference strategy
 

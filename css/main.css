@@ -115,10 +115,10 @@ ul.posts span {
 /*****************************************************************************/
 
 .container {
-  margin-left: 11em;
-  margin-right: 2.5em;
+  margin-left: 15em;
+  margin-right: 4.5em;
   padding-top: 4em;
-  width: 31.4em;
+  width: 30em;
 }
 
 .site {
@@ -215,9 +215,9 @@ ul.posts span {
 
 /* default font */
 .post {
-  font-size: 100%;
+  font-size: 0.94rem;
   text-align: left;
-  line-height: 1.4em;
+  line-height: 1.47;
   font-family: "ff-tisa-web-pro",serif;
   font-style: normal;
   font-weight: 300;
@@ -244,13 +244,17 @@ ul.posts span {
   width: inherit;
 }
 
+.post ul li, .post ol li{
+  padding-left: 0.35em;
+}
+
 /* inline code blocks */
 .post code {
   /*border: 1px solid #ddd;
   background-color: #eef;
   padding: 0 .2em;*/
-  font-size: 80%
-  line-height: 1.5rem;
+  font-size: 90%;
+  /*line-height: 1.5rem;*/
   font-family: "anonymous-pro",sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -292,6 +296,7 @@ ul.posts span {
   width: 10em;
   font-size: 70%;
   line-height: 1.4em;
+  color: #667;
 }
 
 .post .funding-aside {
