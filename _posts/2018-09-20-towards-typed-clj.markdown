@@ -16,9 +16,9 @@ This series of posts will outline our proposed solutions, and give an impression
 for Typed Clojure 1.0.
 </i>
 
-<hr />
+<!--<hr />-->
 
-# The Problems
+<!--# The Problems-->
 
 CircleCI has a great <a href="https://circleci.com/blog/why-were-no-longer-using-core-typed/">blog post</a>
 outlining numerous issues with Typed Clojure in practice.
@@ -101,7 +101,11 @@ There are many potential ways this kind of control-flow information can help mor
 and provide more informative error messages.
 Here are some ideas.
 
-## Avoid annotating anonymous fn's
+<hr />
+
+<div class="aside-header">
+<p><b>Infer local fn's</b></p>
+</div>
 
 Take the following code, where `f` and `g` are
 unannotated anonymous functions like `(fn [x] ...)`{:.language-clojure .highlight}.
@@ -168,60 +172,72 @@ In words, once `a` is provided:
  We can justify a delayed check of `comp`'s arguments
  because providing `a` "kicks it all off".
 
-## Error messages detailing inference strategy
+<hr />
+
+<div class="aside-header">
+<p><b>Improved Error Messages</b></p>
+</div>
+
+CircleCI's blog post rightly complained that error messages
+often don't provide enough guidance for a user to identify
+the cause(s) of an error.
+
+By using the same control flow information as above, we can
+do a better job of explaining why some applications fail.
+For example, take
 
 ```clojure
-;   CircleCI's blog post rightly complained that error messages
-;   often don't provide enough guidance for a user to identify
-;   the cause(s) of an error.
-
-;   By using the same control flow information as above, we can
-;   do a better job of explaining why some applications fail.
-;   For example, take
-
 (comp inc boolean)
-
-;   Typed Clojure currently reports an error which includes the types of
-;   `comp`, `inc`, and `boolean`, and leaves the user to diagnose
-;   the issue.
-
-;   Instead, we can incorporate the control flow information into the
-;   error message like so:
-
-  Type Error:
-  Input to first argument of comp must accept the output of
-  the second argument of comp.
-  
-  In the following diagram, `b` was inferred as Boolean from
-  the result of `boolean`, but it flowed to the input of `inc`,
-  which only accepts Number.
-  
-  
-   [[b -> c] [a -> b] -> [a -> c]]
-     ^             |
-     \-------------/
-  in: (comp inc boolean)
 ```
 
-## Type check transducers
+Typed Clojure currently reports an error which includes the types of
+`comp`, `inc`, and `boolean`, and leaves the user to diagnose
+the issue.
+
+Instead, we can incorporate the control flow information into the
+error message like so:
 
 ```clojure
-;   Transducers in Clojure are a frequent source of 
-;   anonymous functions.
-;   Transducers "compose left-to-right", so the following
-;   code first increments elements of `c`, then decrements.
+Type Error:
+Input to first argument of comp must accept the output of
+the second argument of comp.
 
+In the following diagram, `b` was inferred as Boolean from
+the result of `boolean`, but it flowed to the input of `inc`,
+which only accepts Number.
+
+
+ [[b -> c] [a -> b] -> [a -> c]]
+   ^             |
+   \-------------/
+in: (comp inc boolean)
+```
+
+<hr />
+
+<div class="aside-header">
+<p><b>Type check transducers</b></p>
+</div>
+
+Transducers in Clojure are a frequent source of 
+anonymous functions.
+Transducers "compose left-to-right", so the following
+code first increments elements of `c`, then decrements.
+
+```clojure
 (into []
       (comp (map (fn [x] (inc x)))
             (map (fn [y] (dec y))))
       c)
 ;=> r
+```
 
-;   We could build a similar control flow graph from
-;   the types of `into`, `comp` and `map` that allow
-;   us to propagate the type of `c` to the formal
-;   parameter `x`.
+We could build a similar control flow graph from
+the types of `into`, `comp` and `map` that allow
+us to propagate the type of `c` to the formal
+parameter `x`.
 
+```clojure
 (into []
     /-----------------v
     | (comp (map (fn [x] (inc x)))
@@ -229,84 +245,101 @@ In words, once `a` is provided:
      \
       c)
 ;=> r
-
-
-;   Then, having a type for `x`, would trigger the checking
-;   of the subsequent composed transducers.
 ```
 
-## Supporting hard-to-check map operations
+
+Then, having a type for `x`, would trigger the checking
+of the subsequent composed transducers.
+
+<hr />
+
+<div class="aside-header">
+<p><b>Higher-order operations</b></p>
+</div>
+
+Clojure has a host of handy map operations like `get-in`,
+`assoc-in`, and `select-keys`. We can "reify them at the
+type level" and then use control flow analysis to
+type check operations "in order" (of evaluation).
+
+For example, `update` updates a map at a given entry
+with a function.
 
 ```clojure
-;   Clojure has a host of handy map operations like `get-in`,
-;   `assoc-in`, and `select-keys`. We can "reify them at the
-;   type level" and then use control flow analysis to
-;   type check operations "in order" (of evaluation).
-
-;   For example, `update` updates a map at a given entry
-;   with a function.
-
 (update {:a 1} :a inc) ;=> {:a 2}
+```
 
-;   By reifying `get` and `assoc` at the type level, we
-;   could annotate `update` like so:
+By reifying `get` and `assoc` at the type level, we
+could annotate `update` like so:
 
+```clojure
 (ann update (All [m k v]
               [m k [(Get m k) -> v] -> (Assoc m k v)]))
+```
 
-;   Here's a useful "order" to check the type variables,
-;   so we avoid any hard questions about running `get`
-;   or `assoc` "backwards.
+Here's a useful "order" to check the type variables,
+so we avoid any hard questions about running `get`
+or `assoc` "backwards.
 
+```clojure
 (ann update (All [m k v]
                                2./----------------v
               [m k [(Get m k) -> v] -> (Assoc m k v)]))
             1. \ |       ^ ^                  ^ ^
                 \--------/ /------------------/ /
-
-;   In words, first we infer the value of the map and key
-;   from the first two arguments to `update`. Then we have
-;   enough information to "call" the third argument, which
-;   gets propagated to `Assoc`, which itself now has
-;   "ground" types so is easy to calculate.
-
-;   This is enough information to help check anonymous fn's
-;   passed to `update`, like:
-
-(update {:a 1} :a #(+ 42 %)) ;=> {:a 2}
-
-;   Notice that the control flow happens to go left-to-right
-;   in `update`, but as we've seen in other examples like
-;   `comp`, it could just as well be reversed and we could
-;   derive the same information.
 ```
 
-##  Better "not-supported" Type Errors
+In words, first we infer the value of the map and key
+from the first two arguments to `update`. Then we have
+enough information to "call" the third argument, which
+gets propagated to `Assoc`, which itself now has
+"ground" types so is easy to calculate.
+
+This is enough information to help check anonymous fn's
+passed to `update`, like:
 
 ```clojure
-;   If for some reason we can't infer the type of a local
-;   fn, instead of making a last-ditch effort to check
-;   the fn with argument types Any, we can simply ask the
-;   user to annotate the fn.
-
-;   For example, checking the following function at type
-;   [Any -> ?]
-
-(fn [x] (inc x))
-
-;   Gives a confusing error message that `inc` does not
-;   accept type `Any`. Now, since we could lean on control
-;   improved inference to check most fn's, we can reasonably
-;   be more conservative here.
+(update {:a 1} :a #(+ 42 %)) ;=> {:a 2}
 ```
 
-# Conclusion
+Notice that the control flow happens to go left-to-right
+in `update`, but as we've seen in other examples like
+`comp`, it could just as well be reversed and we could
+derive the same information.
+
+<hr />
+
+<div class="aside-header">
+<b>Conservative checking</b>
+</div>
+
+If for some reason we can't infer the type of a local
+fn, instead of making a last-ditch effort to check
+the fn with argument types `Any`, we can simply ask the
+user to annotate the fn.
+
+For example, checking the following function at type
+`[Any -> ?]`{:.language-clojure .highlight}.
+
+```clojure
+(fn [x] (inc x))
+```
+
+Gives a confusing error message that `inc` does not
+accept type `Any`. Now, since we could lean on control
+improved inference to check most fn's, we can reasonably
+be more conservative here.
+
+<hr />
+<hr />
+
+<!--# Conclusion-->
 
 I'm very excited at the possibilities here. It's still early
 days for this research, but surely, if you can intuitively
 reconstruct the information for a given application based
 on local information, there should be an algorithm to 
-recover it, right? :)
+recover it, right? `:)`
 
 # Next post
 

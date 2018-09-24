@@ -299,6 +299,17 @@ ul.posts span {
   color: #667;
 }
 
+.post .aside-header {
+  text-align: right;
+  position: absolute;
+  left: -14.2em;
+  display: block;
+  width: 12.7em;
+  font-size: 90%;
+  line-height: 1.4em;
+  color: #667;
+}
+
 .post .funding-aside {
   left: -16.2em;
 }
