@@ -121,7 +121,6 @@ We can delay checking `f` and `g` until
 from the `map` expression.
 
 ```clojure
-
               v-\ 3.
 (let [h (comp f g)]
               | ^
