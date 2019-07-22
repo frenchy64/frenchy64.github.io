@@ -99,7 +99,7 @@ a local binding. It is also obviously clear to the reader of such code that it i
 from null pointer exceptions. There is no question about mutating `a`.
 
 _Note_: For presentational purposes, we return `0` if `*atom-or-nil*` is `nil`.
-See [`when-let-fail`](http://clojure.github.io/core.typed/#clojure.core.typed/when-let-fail), which throws an exception if the binding is a false value.
+See [`when-let-fail`](https://clojure.github.io/core.typed/#clojure.core.typed/when-let-fail), which throws an exception if the binding is a false value.
 
 # Conclusion
 
@@ -113,7 +113,7 @@ Your readers will thank you for it.
 
 # Read more
 
-[Occurrence Typing](http://www.ccs.neu.edu/racket/pubs/icfp10-thf.pdf) by [@samth](https://twitter.com/samth) and Matthias Felleisen.
+[Occurrence Typing](https://www.ccs.neu.edu/racket/pubs/icfp10-thf.pdf) by [@samth](https://twitter.com/samth) and Matthias Felleisen.
 This inference technique helps Typed Clojure infer better types at branches and assertions.
 
 # Code

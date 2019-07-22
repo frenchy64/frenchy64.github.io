@@ -6,7 +6,7 @@ date:   2013-10-04 08:00:00
 
 _I am crowdfunding towards 12 months of full-time Typed Clojure development. If you value
 strong guarantees like the static prevention of Null Pointer Exceptions, 
-[pledge or share today](http://www.indiegogo.com/projects/typed-clojure)!_
+[pledge or share today](https://www.indiegogo.com/projects/typed-clojure)!_
 
 Typed Clojure is opinionated: some type errors are checked
 at compile time, and other checks are delayed until runtime. One kind of
@@ -56,20 +56,20 @@ Introducing `nil` with unions is all well and good, but we need a mechanism to _
 if a potential misuse of `nil` is to result in a type error.
 
 Typed Clojure already supports a powerful and easy-to-understand way of refining a union:
-[occurrence typing](http://frenchy64.github.io/2013/09/08/simple-reasoning-assertions-core-typed.html).
+[occurrence typing](https://frenchy64.github.io/2013/09/08/simple-reasoning-assertions-core-typed.html).
 Typed Clojure knows that the local binding `x` in `(when x e)`{:.language-clojure .highlight} will never be `nil` in expression `e`,
 and actually updates the type of `x` without `nil`.
 This also extends to nested structures like heterogeneous maps: the `:foo` key of `x`
 in `(when (:foo x) e)`{:.language-clojure .highlight} is known to never be `nil` in `e`.
 
 Type checking interactions with Java code is an interesting problem with an explicit `nil` type,
-but the solution is [intuitive](http://vimeo.com/55280915), essentially relying on the programmer
+but the solution is [intuitive](https://vimeo.com/55280915), essentially relying on the programmer
 to annotate where `nil` is permitted.
 The only problem is whether these annotations actually describe the behaviour of the corresponding
 Java code; if they differ, there is unsoundness in the type checking.
 Currently, global Java annotations are treated as unchecked assumptions, but we could check these annotations
 at runtime (and thus fail as early as possible) 
-as part of [future work](http://www.indiegogo.com/projects/typed-clojure/x/4545030).
+as part of [future work](https://www.indiegogo.com/projects/typed-clojure/x/4545030).
 
 ## The result
 
@@ -85,4 +85,4 @@ History shows having a null value is extremely error prone, and even a single mi
 be catastrophic. We as programmers need all the help we can get null right: Typed
 Clojure answers this for Clojure programmers.
 
-_Pledge towards further [Typed Clojure](http://www.indiegogo.com/projects/typed-clojure) development_
+_Pledge towards further [Typed Clojure](https://www.indiegogo.com/projects/typed-clojure) development_

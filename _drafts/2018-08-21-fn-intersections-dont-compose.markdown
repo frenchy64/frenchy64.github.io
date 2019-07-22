@@ -67,7 +67,7 @@ My close friend and fellow IU graduate student [Andrew M Kent][3]
 is working on simplifying the numeric tower
 
 
-[1] http://www.ccs.neu.edu/home/stamourv/papers/numeric-tower.pdf
+[1] https://www.ccs.neu.edu/home/stamourv/papers/numeric-tower.pdf
 [2] https://www.typescriptlang.org/docs/handbook/functions.html
 [3] https://github.com/racket/typed-racket/blob/445a65705a25697967c41e12d7770a2f360858c4/typed-racket-lib/typed-racket/base-env/base-env-numeric.rkt
 [4] https://pnwamk.github.io/

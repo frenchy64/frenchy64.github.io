@@ -9,7 +9,7 @@ It's designed to be very similar to Typed Clojure.
 The usual vars like `ann` and `ann-form` are identical to the Clojure implementation,
 except the prefix of `clojure.core.typed` is replaced by `cljs.core.typed`. 
 
-One of the major goals of the Typed Clojure [crowdfunding campaign](http://www.indiegogo.com/projects/typed-clojure) 
+One of the major goals of the Typed Clojure [crowdfunding campaign](https://www.indiegogo.com/projects/typed-clojure) 
 is to work on Typed Clojurescript.
 It will save me a lot of time if enthusiastic Clojurescripters can try type checking Clojurescript code and
 report what works. This way, I'm spending time directly fixing bugs, instead of searching for them.

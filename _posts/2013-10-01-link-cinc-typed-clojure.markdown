@@ -4,7 +4,7 @@ title:  "The link between CinC and Typed&nbsp;Clojure"
 date:   2013-10-01 00:00:00
 ---
 
-The first stretch goal for the [Typed Clojure campaign](http://www.indiegogo.com/projects/typed-clojure/) 
+The first stretch goal for the [Typed Clojure campaign](https://www.indiegogo.com/projects/typed-clojure/) 
 concentrates on a significant missing piece in JVM tooling: a self-hosted Clojure compiler,
 (aka. a Clojure compiler written in Clojure).
 
@@ -86,8 +86,8 @@ on CinC, it's clear that [Nicola](https://twitter.com/Bronsa_) is the real deal.
 All funds raised between the $20,000-$25,500 interval will go to Nicola's work on
 CinC.
 
-[Pledge today](http://www.indiegogo.com/projects/typed-clojure/)!
+[Pledge today](https://www.indiegogo.com/projects/typed-clojure/)!
 
 ## Update
 
-So I tried out my ideas of type checking core.match and I was [very pleased](http://www.youtube.com/watch?v=g2zts1hW19k) with the results!
+So I tried out my ideas of type checking core.match and I was [very pleased](https://www.youtube.com/watch?v=g2zts1hW19k) with the results!

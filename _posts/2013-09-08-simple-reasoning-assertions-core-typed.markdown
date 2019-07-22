@@ -50,9 +50,9 @@ remainder of the current code block.
 Concretely, `a` is updated from type `Any` to `Number` in the *then* branch,
 so we can assume that `a` is of type `Number` for the rest of the function.
 
-We can use [ann-form](http://clojure.github.io/core.typed/#clojure.core.typed/ann-form),
+We can use [ann-form](https://clojure.github.io/core.typed/#clojure.core.typed/ann-form),
 core.typed's local annotation macro, to confirm this intuition 
-(see also: [cf](http://clojure.github.io/core.typed/#clojure.core.typed/cf)).
+(see also: [cf](https://clojure.github.io/core.typed/#clojure.core.typed/cf)).
 
 ```clojure
 (cf
@@ -120,6 +120,6 @@ Returning to our original example, we can clean it up by utilising the succinct 
 ## Read more
 
 Clojure's handling of assertions is a simple and logical extension of 
-[occurrence typing](http://www.ccs.neu.edu/racket/pubs/icfp10-thf.pdf) (Tobin-Hochstadt, Felleisen).
+[occurrence typing](https://www.ccs.neu.edu/racket/pubs/icfp10-thf.pdf) (Tobin-Hochstadt, Felleisen).
 
 Learn about core.typed's [Type Syntax](https://github.com/clojure/core.typed/wiki/Types).

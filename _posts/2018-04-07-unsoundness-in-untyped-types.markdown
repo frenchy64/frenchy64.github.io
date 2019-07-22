@@ -42,6 +42,6 @@ The way TypeScript was designed is in fact more promising than older systems lik
 In conclusion, the design space of typed languages allow for many interpretations of type soundness. The recent upsurge of type systems for untyped languages has given language designers reason to experiment with unconventional views of type soundness, from full soundness in Typed Racket to intentional lack of soundness in TypeScript. The justifications for using or ignoring type soundness are interesting and varied, and there are potentially many other interesting points in the design space that are as yet unexplored.
 
 [1]: https://pdfs.semanticscholar.org/1469/b0cbb109c2a788a346dd0480070de8334dea.pdf "TypeScript"
-[2]: http://www.ccs.neu.edu/racket/pubs/popl08-thf.pdf "Typed Racket"
-[3]: http://frenchy64.github.io/papers/esop16-short.pdf "Typed Clojure"
-[4]: http://goto.ucsd.edu/~ravi/research/oopsla12-djs.pdf "Dependent JS"
+[2]: https://www.ccs.neu.edu/racket/pubs/popl08-thf.pdf "Typed Racket"
+[3]: https://frenchy64.github.io/papers/esop16-short.pdf "Typed Clojure"
+[4]: https://goto.ucsd.edu/~ravi/research/oopsla12-djs.pdf "Dependent JS"

@@ -9,7 +9,7 @@ This is a transcript of a practice talk I gave for my Ph.D. qualifying exam.
 I've left in a lot of the mistakes to give it some character, and
 to learn a bit about how I talk.
 It's also available in different formats 
-<a href="http://ambrosebs.com/">here</a>.
+<a href="https://ambrosebs.com/">here</a>.
 </i>
 
 <hr />

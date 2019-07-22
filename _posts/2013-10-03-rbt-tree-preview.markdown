@@ -4,7 +4,7 @@ title:  "Red/Black tree rebalancing invariants (with plain maps)"
 date:   2013-10-03 00:00:00
 ---
 
-_I am [crowdfunding](http://www.indiegogo.com/projects/typed-clojure/x/4545030) 12 months of full time development on Typed Clojure.
+_I am [crowdfunding](https://www.indiegogo.com/projects/typed-clojure/x/4545030) 12 months of full time development on Typed Clojure.
 Please pledge or share!_
 
 One of the first problems I attempted to solve with Typed Clojure turned out to be one of the most
@@ -404,5 +404,5 @@ interesting results:
 - large conditionals with many branches will type check much faster, even in "normal" code
 - Typed Clojure could be a great way to further explore these kinds of problems
 
-_I am [crowdfunding](http://www.indiegogo.com/projects/typed-clojure/x/4545030) 12 months of full time development on Typed Clojure.
+_I am [crowdfunding](https://www.indiegogo.com/projects/typed-clojure/x/4545030) 12 months of full time development on Typed Clojure.
 If you want to see awesome problems like these solved in Typed Clojure, please pledge or share!_
