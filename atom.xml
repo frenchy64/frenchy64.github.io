@@ -2,7 +2,7 @@
 layout: null
 ---
 <?xml version="1.0"?>
-<feed xmlns="https://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom">
  
   <title>dissoc</title>
   <link href="https://blog.ambrosebs.com"/>
