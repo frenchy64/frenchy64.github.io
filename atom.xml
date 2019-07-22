@@ -1,14 +1,14 @@
 ---
-layout: nil
+layout: null
 ---
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="https://www.w3.org/2005/Atom">
  
   <title>dissoc</title>
-  <link href="https://frenchy64.github.io"/>
-  <link type="application/atom+xml" rel="self" href="https://frenchy64.github.io/atom.xml"/>
+  <link href="https://blog.ambrosebs.com"/>
+  <link type="application/atom+xml" rel="self" href="https://blog.ambrosebs.com/atom.xml"/>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>https://frenchy64.github.io</id>
+  <id>https://blog.ambrosebs.com</id>
   <author>
     <name>Ambrose Bonnaire-Sergeant</name>
     <email>abonnairesergeant [at] gmail.com</email>
@@ -16,14 +16,14 @@ layout: nil
 
   {% for post in site.posts %}
   <entry>
-    <id>https://frenchy64.github.io{{ post.id }}</id>
-    <link type="text/html" rel="alternate" href="https://frenchy64.github.io{{ post.url }}"/>
+    <id>https://blog.ambrosebs.com{{ post.id }}</id>
+    <link type="text/html" rel="alternate" href="https://blog.ambrosebs.com{{ post.url }}"/>
     <title>{{ post.title }}</title>
     <published>{{ post.date | date_to_xmlschema }}</published>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
     <author>
       <name>Ambrose Bonnaire-Sergeant</name>
-      <uri>https://frenchy64.github.io</uri>
+      <uri>https://blog.ambrosebs.com</uri>
     </author>
     <content type="html">{{ post.content | xml_escape }}</content>
   </entry>

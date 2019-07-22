@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Gradual typing for&nbsp;Clojure"
+title:  "Gradual typing for Clojure"
 date:   2015-06-19 08:00:00
 ---
 
