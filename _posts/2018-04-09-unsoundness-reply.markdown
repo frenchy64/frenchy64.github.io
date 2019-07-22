@@ -5,7 +5,7 @@ date:   2018-04-09 01:00:00
 ---
 
 <i>
-David Foster published a <a href="https://dafoster.net/articles/2018/04/07/unsound-type-systems-are-still-useful/">thoughtful response</a> to my <a href="/2018/04/06/unsoundness-in-untyped-types.html">previous post</a> on unsoundness, vouching for unsound type systems as useful and worthy of research.
+David Foster published a <a href="https://dafoster.net/articles/2018/04/07/unsound-type-systems-are-still-useful/">thoughtful response</a> to my <a href="/2018/04/07/unsoundness-in-untyped-types.html">previous post</a> on unsoundness, vouching for unsound type systems as useful and worthy of research.
 I really like this sentiment--unsound systems can provide usability that is ahead of its time, while motivating entire fields of research! Here's my perspective.
 </i>
 
