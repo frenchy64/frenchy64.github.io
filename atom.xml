@@ -8,10 +8,9 @@ layout: null
   <link href="https://blog.ambrosebs.com"/>
   <link type="application/atom+xml" rel="self" href="https://blog.ambrosebs.com/atom.xml"/>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>https://blog.ambrosebs.com</id>
+  <id>https://blog.ambrosebs.com/</id>
   <author>
     <name>Ambrose Bonnaire-Sergeant</name>
-    <email>abonnairesergeant [at] gmail.com</email>
   </author>
 
   {% for post in site.posts %}
