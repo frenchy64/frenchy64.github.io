@@ -1,5 +1,6 @@
 _site
 .DS_store
-Gemfile.lock
 *.swp
 .jekyll-*
+.bundle
+vendor
