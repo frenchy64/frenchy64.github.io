@@ -198,12 +198,13 @@ error message like so:
 
 ```clojure
 Type Error:
-Input to first argument of comp must accept the output of
-the second argument of comp.
+Input to first argument of comp must accept
+the output of the second argument of comp.
 
-In the following diagram, `b` was inferred as Boolean from
-the result of `boolean`, but it flowed to the input of `inc`,
-which only accepts Number.
+In the following diagram, `b` was inferred
+as Boolean from the result of `boolean`, but
+it flowed to the input of `inc`, which only
+accepts Number.
 
 
  [[b -> c] [a -> b] -> [a -> c]]
