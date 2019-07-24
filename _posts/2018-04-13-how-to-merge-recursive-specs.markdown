@@ -24,7 +24,7 @@ more than once (like `Ints` in this example).
 
 <i>
 To achieve this, we start with “naive”
-spec annotations with no aliases (via <a href="/2016/08/13/runtime-infer-basics.html">runtime observations</a>).
+spec annotations with no aliases (via <a href="{{ site.url }}/2016/08/13/runtime-infer-basics.html">runtime observations</a>).
 Then, we use these specs to create as many aliases as we can.
 Finally, we merge similar aliases based on several heuristics.
 </i>
@@ -101,7 +101,7 @@ simple set theory to simplify the specs.
 
 Now `B` is quite compact! Can we maintain this compact representation throughout the algorithm?
 This is a crucial question to answer:
-the size of specs is the <a href="/2018/04/04/automatic-annotations-quals.html">main performance bottleneck</a>
+the size of specs is the <a href="{{ site.url }}/2018/04/04/automatic-annotations-quals.html">main performance bottleneck</a>
 in the annotation reconstruction algorithm.
 
 # The Solution
