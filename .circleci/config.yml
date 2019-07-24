@@ -47,7 +47,7 @@ jobs:
     docker:
       - image: circleci/python:3.6.3
     environment:
-      S3_BUCKET_NAME: <<YOUR BUCKET NAME HERE>>
+      S3_BUCKET_NAME: ambrosebs-blog-bucket
     steps:
       - attach_workspace:
           at: ./
