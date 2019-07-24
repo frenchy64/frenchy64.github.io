@@ -108,10 +108,6 @@ when we discuss these extensions.
 
 <hr />
 
-<i>
 This work is part of a crowdfunding effort, please
-support the campaign by clicking the banner the below
-(or <a href="https://igg.me/at/typed-clojure-annotations/x/4545030">here</a>)!
-</i>
-
-<iframe src="https://www.indiegogo.com/project/typed-clojure-automatic-annotations--2/embedded/4545030" width="222px" height="445px" frameborder="0" scrolling="no"></iframe>
+support the campaign 
+<a href="https://igg.me/at/typed-clojure-annotations/x/4545030">here</a>!
