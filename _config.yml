@@ -2,5 +2,3 @@ name: dissoc
 title: dissoc
 highlighter: rouge
 url: https://blog.ambrosebs.com
-
-exclude: *.sh
