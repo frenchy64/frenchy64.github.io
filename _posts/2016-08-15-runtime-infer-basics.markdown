@@ -4,7 +4,8 @@ title:  "Basics of automatic annotations"
 date:   2016-08-13 08:00:00
 ---
 
-<img src="{{ site.url }}/images/automatic-annotations.png"/>
+<img src="{{ site.url }}/images/automatic-annotations.png"
+     alt="Automatic annotations logo"/>
 
 We have covered some of the reasons
 why automatic annotations are useful
@@ -13,25 +14,21 @@ in my
 now let's build up the infrastructure necessary to perform
 it from scratch.
 
-<hr />
-
-<i>
 This work is part of a crowdfunding effort, please
-support the campaign by clicking the banner the below
-(or <a href="https://igg.me/at/typed-clojure-annotations/x/4545030">here</a>)!
-</i>
-
-<iframe src="https://www.indiegogo.com/project/typed-clojure-automatic-annotations--2/embedded/4545030" width="222px" height="445px" frameborder="0" scrolling="no"></iframe>
+support the campaign 
+<a href="https://igg.me/at/typed-clojure-annotations/x/4545030">here</a>!
 
 <hr />
 
-<img src="{{ site.url }}/images/auto-basics/instrumentation-header.png"/>
+<img src="{{ site.url }}/images/auto-basics/instrumentation-header.png"
+     alt="Instrumenation"/>
 
 At the center of our approach is the `track` function.
 It wraps values and remembers a 'path'
 to report the source of the value.
 
-<img src="{{ site.url }}/images/auto-basics/track.png"/>
+<img src="{{ site.url }}/images/auto-basics/track.png"
+     alt="Specification of track"/>
 
 How is `track` defined? 
 Let's add support for flat values.
@@ -60,7 +57,8 @@ element is the 'var path element'.
 To track the value of a `def`, we rewrite it with
  the following transformation.
 
-<img src="{{ site.url }}/images/auto-basics/track-def.png"/>
+<img src="{{ site.url }}/images/auto-basics/track-def.png"
+     alt="Track top-level binding"/>
 
 The we track a `def` by tracking its right-hand side as
 a singleton path containing just the var name.
@@ -68,18 +66,21 @@ a singleton path containing just the var name.
 Recall from the previous post, we are interested in two kind of
 annotations: user-level vars and libraries.
 
-<img src="{{ site.url }}/images/annotations-needed.png"/>
+<img src="{{ site.url }}/images/annotations-needed.png"
+     alt="Annotations needed for top-level and library bindings"/>
 
 We can track user-level vars by directly transforming
 the `def` expressions before they are compiled.
 To intercept library functions, we need to wrap each
 library var dereference in a `track`.
 
-<img src="{{ site.url }}/images/auto-basics/track-library-imports.png"/>
+<img src="{{ site.url }}/images/auto-basics/track-library-imports.png"
+     alt="Track library imports"/>
 
 Here's how the evaluator step through an evaluation of tracking a `def`.
 
-<img src="{{ site.url }}/images/auto-basics/42-step.png"/>
+<img src="{{ site.url }}/images/auto-basics/42-step.png"
+     alt="Example tracking of binding"/>
 
 1. The initial `def` is what the programmer actually writes.
 2. We rewrite the plain `def` into a `track` that remembers
