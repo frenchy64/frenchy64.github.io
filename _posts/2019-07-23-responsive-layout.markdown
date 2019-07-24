@@ -52,3 +52,5 @@ With single-column, it is left-justified within the body.
 ```
 
 Similar CSS is used to move post headers (try resizing this page).
+
+_Thanks to Matthew Butterick for the viewport CSS_
