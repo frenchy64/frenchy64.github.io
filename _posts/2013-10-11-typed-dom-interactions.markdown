@@ -51,6 +51,7 @@ _In Part 2, we look at why type checking Clojurescript is more satisfying than t
 
 <div>
   <a href='https://www.indiegogo.com/projects/typed-clojure/'>
-    <img src='{{ site.url }}/images/typed-clojure-2013-campaign-60pc.png'/>
+    <img src='{{ site.url }}/images/typed-clojure-2013-campaign-60pc.png'
+         alt="Crowdfunding campaign"/>
   </a>
 </div>

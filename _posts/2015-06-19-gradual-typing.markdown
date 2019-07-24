@@ -25,7 +25,8 @@ code _beyond_ the compile-time sandbox type checkers assume.
 <div>
 <center>
 <a href="https://www.indiegogo.com/projects/gradual-typing-for-clojure/x/4545030">
-<img src="{{ site.url }}/images/gradual-banner-for-crowdfunding.png"/>
+<img src="{{ site.url }}/images/gradual-banner-for-crowdfunding.png"
+     alt="Crowdfunding campaign"/>
 </a>
 </center>
 </div>
@@ -70,7 +71,8 @@ You can think of each land as a file written in the corresponding language.
 We represent the mediator as an orange line separating &ldquo;typed land&rdquo;
 (left) and &ldquo;untyped land&rdquo; (right).
 
-<img src="{{ site.url }}/images/language-boundary.png"/>
+<img src="{{ site.url }}/images/language-boundary.png"
+     alt="Language boundary"/>
 
 <div class="aside">Gradual typing was independently invented
 around 2006 by 
@@ -87,17 +89,20 @@ We represent an untyped value with the
 Clojure logo. When the mediator wraps some untyped value in contracts, we 
 represent this as a ring of orange.
 
-<img src="{{ site.url }}/images/untyped-example.png"/>
+<img src="{{ site.url }}/images/untyped-example.png"
+     alt="Untyped example"/>
 
 Similarly, the Typed Clojure logo stands for a well-typed Typed Clojure value, with
 contracts represented by a ring of orange.
 
-<img src="{{ site.url }}/images/typed-example.png"/>
+<img src="{{ site.url }}/images/typed-example.png"
+     alt="Typed example"/>
 
 Importing untyped values into typed land requires a contract wrapping the untyped
 code.
 
-<img src="{{ site.url }}/images/import-untyped-boundary.png"/>
+<img src="{{ site.url }}/images/import-untyped-boundary.png"
+     alt="Import untyped boundary"/>
 
 The goal is to restrict the untyped value to behave exactly as the annotation ascribed to
 it by the programmer, otherwise throw a contract violation.
@@ -107,7 +112,8 @@ treat it like any other typed value.
 
 An exported typed value also needs a contract.
 
-<img src="{{ site.url }}/images/export-typed-boundary.png"/>
+<img src="{{ site.url }}/images/export-typed-boundary.png"
+     alt="Export typed boundary"/>
 
 Isn&rsquo;t the typed value already type-safe by definition? Yes.
 Why do we need a contract? All usages in _typed land_ are type checked,
@@ -125,7 +131,8 @@ to appreciate some of runtime mediator&rsquo;s choices.
 
 The simplest case is an untyped function applied to an untyped value.
 
-<img src="{{ site.url }}/images/untyped-invoke-untyped.png"/>
+<img src="{{ site.url }}/images/untyped-invoke-untyped.png"
+     alt="Untyped invoke untyped"/>
 
 <div class="aside">Recall the goal of gradual typing &mdash; to ensure the invariants
 of <i>typed code</i> are preserved.
@@ -137,7 +144,8 @@ or outputs.
 
 Similarly, there&rsquo;s not much to do when typed code is applied to typed code.
 
-<img src="{{ site.url }}/images/typed-invoke-typed.png"/>
+<img src="{{ site.url }}/images/typed-invoke-typed.png"
+     alt="Typed invoke typed"/>
 
 By elimination, this situation can _only_ occur in typed land &mdash; if it were in
 untyped land, then both the function and the argument would be wrapped in contracts
@@ -148,7 +156,8 @@ validation.
 Is it possible for a typed function to be applied to an untyped value
 &mdash; without contracts?
 
-<img src="{{ site.url }}/images/bad-typed-invoke-untyped.png"/>
+<img src="{{ site.url }}/images/bad-typed-invoke-untyped.png"
+     alt="Bad typed invoke untyped"/>
 
 No &mdash; at least one of these values
 must have contracts from crossing the language boundary.
@@ -156,11 +165,13 @@ must have contracts from crossing the language boundary.
 In the first situation, 
 the _typed function_ has crossed the language boundary into untyped land.
 
-<img src="{{ site.url }}/images/export-typed-boundary.png"/>
+<img src="{{ site.url }}/images/export-typed-boundary.png"
+     alt="Export typed boundary"/>
 
 Now it&rsquo;s plausible to apply the operator.
 
-<img src="{{ site.url }}/images/gtyped-invoke-untyped.png"/>
+<img src="{{ site.url }}/images/gtyped-invoke-untyped.png"
+     alt="Gradually typed invoke untyped"/>
 
 What kind of contract is attached to the typed function?
 Checking the input is very similar to the mediator accepting an
@@ -172,7 +183,8 @@ typed function. While similar to the mediator, don&rsquo;t confuse
 the two.
 </div>
 
-<img src="{{ site.url }}/images/import-untyped-boundary.png"/>
+<img src="{{ site.url }}/images/import-untyped-boundary.png"
+     alt="Import untyped boundary"/>
 
 Now notice the return value of the invocation.
 A typed function returns a typed value, right? Yes.
@@ -214,12 +226,14 @@ contract like `Any`, we must be proactive and add a contract.
 The second case where a typed function can be applied to an untyped value is in typed land
 &mdash;
 
-<img src="{{ site.url }}/images/typed-invoke-guntyped.png"/>
+<img src="{{ site.url }}/images/typed-invoke-guntyped.png"
+     alt="Typed invoke gradually untyped"/>
 
 &mdash;
 where the _untyped value_ was imported into typed land via the mediator.
 
-<img src="{{ site.url }}/images/import-untyped-boundary.png"/>
+<img src="{{ site.url }}/images/import-untyped-boundary.png"
+     alt="Import untyped boundary"/>
 
 Remember, typed code can consider an untyped value as _typed_
 if the mediator assigns it a contract.
@@ -230,26 +244,32 @@ The final two cases are similar.
 
 Firstly, exporting a typed value can be used by an untyped function.
 
-<img src="{{ site.url }}/images/untyped-invoke-gtyped.png"/>
+<img src="{{ site.url }}/images/untyped-invoke-gtyped.png"
+     alt="Untyped invoke gradually typed"/>
 
 Secondly, importing an untyped function wraps it in a function contract,
 which ensures the plain typed parameter is protected 
 before it enters the untyped function.
 
-<img src="{{ site.url }}/images/guntyped-invoke-typed.png"/>
+<img src="{{ site.url }}/images/guntyped-invoke-typed.png"
+     alt="Gradually untyped invoke typed"/>
 
 The return value also needs checking on each invocation &mdash; we can&rsquo;t
 trust an untyped function to do the right thing.
 
 Finally for comparison, here are the interesting combinations.
 
-<img src="{{ site.url }}/images/gtyped-invoke-untyped.png"/>
+<img src="{{ site.url }}/images/gtyped-invoke-untyped.png"
+     alt="Gradually typed invoke untyped"/>
 
-<img src="{{ site.url }}/images/typed-invoke-guntyped.png"/>
+<img src="{{ site.url }}/images/typed-invoke-guntyped.png"
+     alt="Typed invoked gradually untyped"/>
 
-<img src="{{ site.url }}/images/guntyped-invoke-typed.png"/>
+<img src="{{ site.url }}/images/guntyped-invoke-typed.png"
+     alt="Gradually untyped invoke typed"/>
 
-<img src="{{ site.url }}/images/untyped-invoke-gtyped.png"/>
+<img src="{{ site.url }}/images/untyped-invoke-gtyped.png"
+     alt="Untyped invoke gradually untyped"/>
 
 <hr/>
 
@@ -257,7 +277,4 @@ In practice, a gradual typing system must consider much more
 than what we&rsquo;ve outlined here.
 
 If you want to support the effort to bring gradual typing to Clojure,
-please fund the crowdfunding campaign.
-
-<iframe src="https://www.indiegogo.com/project/typed-clojure-from-optional-to-gradual-typing/embedded/4545030" width="222px" height="445px" frameborder="0" scrolling="no"></iframe>
-
+please fund the [crowdfunding campaign](https://www.indiegogo.com/projects/gradual-typing-for-clojure/x/4545030).

@@ -12,16 +12,8 @@ This is a transcript of a PL Wonks lightning talk.
 
 {% for slide in site.data.macro-writers-slides %}
 
-  <img src="{{ site.url }}{{ slide.image }}" />
-  <p>{{ slide.desc | markdownify }}</p>
+  <img src="{{ site.url }}{{ slide.image }}"
+       alt="Slide {{ forloop.index}}"/>
+  {{ slide.desc | markdownify }}
 
-  {% capture example-two-column-comment %}
-  <div style="column-count: 2">
-    <img src="{{ site.url }}{{ slide.image }}" />
-    <p style="break-before: column">
-      {{ slide.desc | markdownify }}
-    </p>
-  </div>
-  <hr />
-  {% endcapture %}
 {% endfor %}

@@ -74,26 +74,30 @@ We can draw the dependencies of these aliases as a graph, where the edges
 mean “refers to”. For example, `A0` refers to itself and `B`, so it
 has edges to `A0` and `B`.
 
-<img src="{{ site.url }}/images/garbage-collection/garbage-collection.001.jpeg"/>
+<img src="{{ site.url }}/images/garbage-collection/garbage-collection.001.jpeg"
+     alt="Initial alias dependencies"/>
 
 Let’s say we’ve decided to merge all these temporary aliases into `B` (see below).
 First we redirect all the temporary aliases to point directly to `B` (bottom left),
 then we update `B` to be the combination of all the original aliases (bottom right).
 
-<img src="{{ site.url }}/images/garbage-collection/garbage-collection.002.jpeg"/>
+<img src="{{ site.url }}/images/garbage-collection/garbage-collection.002.jpeg"
+     alt="Merge aliases"/>
 
 The size of `B` is linear in the number of recursive aliases merged into it &mdash;
 that is, `B` gets bigger every time we merge a recursive alias into it.
 In then end, however, the final garbage collection pass (below) deletes all temporary aliases and results
 in a much simpler, but redundant, representation for `B` .
 
-<img src="{{ site.url }}/images/garbage-collection/garbage-collection.003.jpeg"/>
+<img src="{{ site.url }}/images/garbage-collection/garbage-collection.003.jpeg"
+     alt="Garbage collection"/>
 
 We can then often simplify these specs to compress all the redundant recursive
 occurrences of `B` (below). Since we combine specs with unions (called `s/or` in spec), we can use
 simple set theory to simplify the specs.
 
-<img src="{{ site.url }}/images/garbage-collection/garbage-collection.004.jpeg"/>
+<img src="{{ site.url }}/images/garbage-collection/garbage-collection.004.jpeg"
+     alt="Type simplification"/>
 
 Now `B` is quite compact! Can we maintain this compact representation throughout the algorithm?
 This is a crucial question to answer:
