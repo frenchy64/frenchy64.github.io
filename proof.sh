@@ -1,3 +1,7 @@
 #!/bin/sh
 
-bundle exec htmlproofer ./_site --check-html --disable-external
+bundle exec htmlproofer ./_site \
+  --allow-hash-href \
+  --check-favicon  \
+  --check-html \
+  --disable-external
