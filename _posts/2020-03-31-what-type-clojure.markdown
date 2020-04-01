@@ -77,13 +77,13 @@ paper goes into depth about how to model it in a type checker. But isa? is prett
 # clojure.spec's perspective
 
 [clojure.spec](https://github.com/clojure/spec.alpha) implements runtime predicates and destructuring similar
-to the runtime portion of your [ESL17](https://www.lrde.epita.fr/wiki/Publications/newton.17.els) paper. It has the same regex operators
+to the runtime portion of your [ELS17](https://www.lrde.epita.fr/wiki/Publications/newton.17.els) paper. It has the same regex operators
 for sequences, for example.
 
 However I don't know of any rigorous work of defining a subtyping algorithm between
 specs. Actually, I'm [in the middle](https://github.com/typedclojure/typedclojure/blob/7ba8eb9956d016b5878c9dfab770c885226bd1be/typed/clj.spec/src/typed/clj/spec/subtype.clj)
 of thinking about how to do this, so it's very convenient
-that you brought your [ESL17](https://www.lrde.epita.fr/wiki/Publications/newton.17.els)
+that you brought your [ELS17](https://www.lrde.epita.fr/wiki/Publications/newton.17.els)
 paper to my attention, since I was going to start looking
 at [XDuce](https://en.wikipedia.org/wiki/XML_transformation_language#Existing_languages)/[CDuce](https://en.wikipedia.org/wiki/CDuce) for inspiration on how to deal with semantic subtyping with regex ops.
 
