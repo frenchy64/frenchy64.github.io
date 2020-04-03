@@ -1,0 +1,49 @@
+name: Build
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  build:
+    name: Build
+    runs-on: circleci/ruby:2.5
+    env:
+      BUNDLE_PATH: ~/repo/vendor/bundle
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Bundle Install
+        run: bundle check || bundle install
+      - name: Jekyll build
+        run: bundle exec jekyll build
+      - name: HTMLProofer tests
+        run: |
+          bundle exec htmlproofer ./_site \
+            --allow-hash-href \
+            --check-favicon  \
+            --check-html \
+            --disable-external
+      - name: Persist _site
+        uses: actions/upload-artifact@v1
+        with:
+          name: site
+          path: _site
+
+  deploy:
+    on:
+      branches:
+        master
+    runs-on: circleci/python:3.6.3
+    env:
+      S3_BUCKET_NAME: blog.ambrosebs.com
+    steps:
+      - name: Fetch site
+        uses: actions/download-artifact@v1
+        with:
+          name: site
+      - name: Install AWS CLI
+        run: pip install awscli --upgrade --user
+      - name: Upload to s3
+        run: ~/.local/bin/aws s3 sync ./_site s3://$S3_BUCKET_NAME/ --delete --acl public-read
