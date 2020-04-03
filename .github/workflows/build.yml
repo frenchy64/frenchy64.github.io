@@ -35,6 +35,7 @@ jobs:
           path: _site
 
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     env:
       S3_BUCKET_NAME: blog.ambrosebs.com
