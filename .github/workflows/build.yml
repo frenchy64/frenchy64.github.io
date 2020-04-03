@@ -8,12 +8,15 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: circleci/ruby:2.5
+    runs-on: ubuntu-latest
     env:
       BUNDLE_PATH: ~/repo/vendor/bundle
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.5'
       - name: Bundle Install
         run: bundle check || bundle install
       - name: Jekyll build
@@ -32,7 +35,7 @@ jobs:
           path: _site
 
   deploy:
-    runs-on: circleci/python:3.6.3
+    runs-on: ubuntu-latest
     env:
       S3_BUCKET_NAME: blog.ambrosebs.com
     steps:
@@ -40,6 +43,9 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: site
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.6.3'
       - name: Install AWS CLI
         run: pip install awscli --upgrade --user
       - name: Upload to s3
