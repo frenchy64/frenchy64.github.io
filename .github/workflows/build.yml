@@ -32,9 +32,6 @@ jobs:
           path: _site
 
   deploy:
-    on:
-      branches:
-        master
     runs-on: circleci/python:3.6.3
     env:
       S3_BUCKET_NAME: blog.ambrosebs.com
