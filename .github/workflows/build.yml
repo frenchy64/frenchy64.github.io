@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BUNDLE_PATH: ./vendor/bundle
+      S3_BUCKET_NAME: blog.ambrosebs.com
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -34,23 +35,6 @@ jobs:
             --check-favicon  \
             --check-html \
             --disable-external
-      - name: Persist _site
-        uses: actions/upload-artifact@v1
-        with:
-          name: site
-          path: ./_site
-
-  deploy:
-    needs: build
-    name: Deploy
-    runs-on: ubuntu-latest
-    env:
-      S3_BUCKET_NAME: blog.ambrosebs.com
-    steps:
-      - name: Fetch site
-        uses: actions/download-artifact@v1
-        with:
-          name: site
       - uses: actions/setup-python@v1
         with:
           python-version: '3.6.10'
