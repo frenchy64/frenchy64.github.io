@@ -34,7 +34,7 @@ Typed Clojurescript can statically verify the expected annotation of `by-id` if 
 - an instance of `js/Document` has a method of type `[string -> (U nil js/HTMLElement)]`.
 
 This information needs to be provided explicitly, and the current implementation of Typed Clojurescript
-[provides a small base environment](https://github.com/clojure/core.typed/blob/master/src/main/clojure/clojure/core/typed/base_env_cljs.clj#L40).
+[provides a small base environment](https://github.com/clojure/core.typed/blob/main/src/main/clojure/clojure/core/typed/base_env_cljs.clj#L40).
 
 ## Future work
 

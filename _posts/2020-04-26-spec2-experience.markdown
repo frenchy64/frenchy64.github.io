@@ -4,7 +4,7 @@ title:  "Spec2 experience"
 date:   2020-04-26 08:00:00
 ---
 
-Over the last few months I've been building [typed.clj/spec](https://github.com/typedclojure/typedclojure/blob/master/typed/clj.spec/README.md)
+Over the last few months I've been building [typed.clj/spec](https://github.com/typedclojure/typedclojure/blob/41f2fabed3bcc528e45fea5d1efd371896b6be86/typed/clj.spec/README.md)
 on top of [spec-alpha2](https://github.com/clojure/spec-alpha2), the new and
 improved version of Clojure spec that Alex, Rich and others are building.
 

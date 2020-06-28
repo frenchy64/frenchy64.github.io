@@ -118,9 +118,9 @@ This inference technique helps Typed Clojure infer better types at branches and 
 
 # Code
 
-See the [code](https://github.com/frenchy64/frenchy64.github.io/tree/master/code/blog) for this blog.
+See the [code](https://github.com/frenchy64/frenchy64.github.io/tree/main/code/blog) for this blog.
 
 Particularly:
 
-- [locals inference](https://github.com/frenchy64/frenchy64.github.io/blob/master/code/blog/src/blog/immutable/local.clj)
-- [dynamic vars](https://github.com/frenchy64/frenchy64.github.io/blob/master/code/blog/src/blog/immutable/dynamic.clj)
+- [locals inference](https://github.com/frenchy64/frenchy64.github.io/blob/main/code/blog/src/blog/immutable/local.clj)
+- [dynamic vars](https://github.com/frenchy64/frenchy64.github.io/blob/main/code/blog/src/blog/immutable/dynamic.clj)
