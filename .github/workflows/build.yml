@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BUNDLE_PATH: ./vendor/bundle
-      S3_BUCKET_NAME: blog.ambrosebs.com
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -35,10 +34,12 @@ jobs:
             --check-favicon  \
             --check-html \
             --disable-external
-      - uses: actions/setup-python@v1
+      - uses: jakejarvis/s3-sync-action@master
         with:
-          python-version: '3.6.10'
-      - name: Install AWS CLI
-        run: pip install awscli --upgrade --user
-      - name: Upload to s3
-        run: ~/.local/bin/aws s3 sync ./_site s3://$S3_BUCKET_NAME/ --delete --acl public-read
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-west-2'
+          SOURCE_DIR: '_site'
